@@ -11,7 +11,7 @@ Features :
 
 Short description
 Block diagram of the system & some screne shots  
-~Marketing brochure~
+Marketing brochure
 
 Reminder Demo Format setups and Requirements : 
 Demo Format 
