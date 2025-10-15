@@ -2,14 +2,14 @@
 
 Date Created Repository : 14/10/2025
 
-====================================
-Demo Format and Requirements 
+
+## Demo Format and Requirements 
 Name: Adriel
 Project title: Coffee Shop Managmeent System 
 Project URL: 
 Features :
 
-===================== Short description =============================
+Short description
 Block diagram of the system & some screne shots  
 ~Marketing brochure~
 
