@@ -36,8 +36,10 @@ Do not presenting your slide, we need to see what you have implemented
 7. You will deliver your presentaiton in a video as you did in the first week's introduction. You need to record your sccreen and your voice while displaying your product.
 
 
+database
+-
 
-
+prepare 
 
 
 
