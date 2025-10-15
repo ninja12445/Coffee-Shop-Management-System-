@@ -39,7 +39,22 @@ Do not presenting your slide, we need to see what you have implemented
 database
 -
 
-prepare 
+prepare serveral examples of records before the demo and avoid creating new records during the demo, 
+
+Show your product , show the services offered to these users. 
+=
+Make sure it has alot of potentials, marketize, and can solve user pain points 
+
+You want to show that : 
+You are addressinng an important problem 
+The problem presents technical challenges, which you successfully solved
+Your solution employs high-quality sofware design 
+This system will work reliably, and be easy to understand and use 
+
+use a roadmap slide to guide the audience and make them aware of what is coming next. 
+
+Avoid showcase code 
+
 
 
 
