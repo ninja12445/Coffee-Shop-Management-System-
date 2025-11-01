@@ -1,6 +1,6 @@
 # Coffee Shop Management System
 
-Date creates repository : 14/10/2025
+This systems hope to offer a solution to help user overcome inconveniency and help boost productivity in selling coffee shop
 
 
 
