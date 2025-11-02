@@ -2,6 +2,13 @@
 
 This systems hope to offer a solution to help user overcome inconveniency and help boost productivity in selling coffee shop
 
+requirements.txt
+```
+python 3.12
+Mariadb
+FastAPI
+```
+
 Run via Frontend
 ```
 python -m http.server 3000
