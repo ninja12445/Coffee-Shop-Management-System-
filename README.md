@@ -10,10 +10,14 @@ what does this do ?
 it starts a http server for the client at port 3000 
 
 
-Run via backend 
-.venv\foldername\activate   |  run virtual environment for me I use (.venv\Scripts\activate) locally 
+Run via backend
+```
+.venv\foldername\activate   |  run virtual environment for me I use (.venv\Scripts\activate) locally
+```
+---
+```
 uvicorn main:app --reload 
-
+```
 Here the server will run backend at port 8000
 
 
