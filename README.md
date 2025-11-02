@@ -1,6 +1,7 @@
 # Coffee Shop Management System
 
-This systems hope to offer a solution to help user overcome inconveniency and help boost productivity in selling coffee shop
+This coffee shop management system will help user to achieve 10x in productivity 
+User friendly, efficient and better workflow 
 
 requirements.txt
 ```
@@ -44,6 +45,7 @@ Here the server will run backend at port 8000
 - [ ] Bank account transaction simulation  
 
 ## 3. User & Membership
+- [ ] Create Account, Login / Logout
 - [ ] Membership points system  
 - [ ] Scan bar code  
 
