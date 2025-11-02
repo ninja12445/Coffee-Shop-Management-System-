@@ -47,7 +47,7 @@ Here the server will run backend at port 8000
 - [ ] Bank account transaction simulation  
 
 ## 3. User & Membership
-- [✅] Create Account, Login / Logout
+  ✅ Create Account, Login / Logout
 - [ ] Membership points system  
 - [ ] Scan bar code  
 
