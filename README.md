@@ -6,9 +6,9 @@ User friendly, efficient and extremely easy to use.
 
 requirements.txt
 ```
-Python 3.12.9 | Check python version by typing python --version 
-Mariadb
-FastAPI
+Python 3.12.9        | python --version 
+Mariadb              | pip show mariadb --version
+fastapi 0.120.0      | pip show fastapi
 ```
 
 Run via Frontend
