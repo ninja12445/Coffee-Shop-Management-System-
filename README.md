@@ -8,7 +8,8 @@ requirements.txt
 ```
 Python 3.12.9        | python --version 
 Mariadb              | pip show mariadb --version
-fastapi 0.120.0      | pip show fastapi
+fastapi 0.120.0      | pip show fastapi --version
+pydantic 2.12.3      | pip show pydantic --version
 ```
 
 Run via Frontend
