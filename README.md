@@ -9,10 +9,10 @@ python -m http.server 3000
 what does this do ? 
 it starts a http server for the client at port 3000 
 
-
+---
 Run via backend
 ```
-.venv\foldername\activate   |  run virtual environment for me I use (.venv\Scripts\activate) locally
+.venv\foldername\activate   |  run virtual environment 
 ```
 ---
 ```
