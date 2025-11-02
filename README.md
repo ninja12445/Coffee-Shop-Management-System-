@@ -27,18 +27,35 @@ uvicorn main:app --reload
 ```
 Here the server will run backend at port 8000
 
-Main Features:
-[] Pre-ordering
-[] Self-service ordering
-[] Payment features (pay by cash or pay by credit card)
-[] Manager can adjust sales record 
-[] Manager can view activities, adjust sales, track ingredients, manage user info, check voucher usage
-[] Handle 30 user requests at the same time  
-[] <Back navigation 
-[] Wait 2 Call Update | Before: Customer have to wait | After: Automatic countdown with notifications and connects to employee / manager real-time chat 
-[] Membership point 
-[] Scan bar code 
-[] Bank Account transaction simulation 
+# Main Features
+
+## 1. Ordering Features
+- [ ] Pre-ordering  
+- [ ] Self-service ordering  
+- [ ] Wait 2 Call Update  
+  - **Before:** Customer had to wait manually  
+  - **After:** Automatic countdown with notifications and real-time chat with employee/manager  
+- [ ] <Back navigation  
+
+## 2. Payment & Transactions
+- [ ] Payment options:  
+  - Pay by cash  
+  - Pay by credit card  
+- [ ] Bank account transaction simulation  
+
+## 3. User & Membership
+- [ ] Membership points system  
+- [ ] Scan bar code  
+
+## 4. Manager Controls
+- [ ] Adjust sales records  
+- [ ] View activities  
+- [ ] Track ingredients  
+- [ ] Manage user information  
+- [ ] Check voucher usage  
+
+## 5. System Capabilities
+- [ ] Handle up to 30 user requests simultaneously  
 
 
 
