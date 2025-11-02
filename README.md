@@ -1,7 +1,8 @@
 # Coffee Shop Management System
 
-This coffee shop management system will help user to achieve 10x in productivity 
-User friendly, efficient and better workflow 
+This coffee shop management system will help users to achieve 10x in productivity 
+
+User friendly, efficient and extremely easy to use. 
 
 requirements.txt
 ```
