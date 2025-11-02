@@ -4,7 +4,7 @@ This systems hope to offer a solution to help user overcome inconveniency and he
 
 requirements.txt
 ```
-Python 3.12.9 --you can ehck this via cmd by typing python --version
+Python 3.12.9 --you can verify the latest python version through typing [python --version]
 Mariadb
 FastAPI
 ```
