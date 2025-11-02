@@ -6,8 +6,8 @@ Run via Frontend
 ```
 python -m http.server 3000
 ```
-what does this do ? 
-it starts a http server for the client at port 3000 
+# what does this do ? 
+> It starts an http server for the client at port 3000 
 
 ---
 Run via backend
