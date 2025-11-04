@@ -17,7 +17,9 @@ Fully functionalities
 User membership registration & account register 
 <img width="1903" height="909" alt="image" src="https://github.com/user-attachments/assets/8f899258-0f3d-44d9-969c-6f8835d786a2" />
 whats' missing ? 
-[] role base 
-[] Back navigation
-[] redesign the color 
+- role base
+- Back navigation
+- redesign the color 
 
+what need to be replace ? 
+- the text section in black (unfinished work) okay might update in a day or two 
