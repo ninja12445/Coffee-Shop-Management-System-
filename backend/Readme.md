@@ -13,3 +13,11 @@ Fully functionalities
 8. Scan barcode
 9. Pay by cash 
 10.Scan bar code
+
+User membership registration & account register 
+<img width="1903" height="909" alt="image" src="https://github.com/user-attachments/assets/8f899258-0f3d-44d9-969c-6f8835d786a2" />
+whats' missing ? 
+[] role base 
+[] Back navigation
+[] redesign the color 
+
