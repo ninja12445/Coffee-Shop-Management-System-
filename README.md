@@ -47,7 +47,7 @@ Here the server will run backend at port 8000
 - [ ] Bank account transaction simulation  
 
 ## 3. User & Membership
-  ✅ Create Account, Login / Logout
+ [PASS] Create Account, Login / Logout ✅ 
 - [ ] Membership points system  
 - [ ] Scan bar code  
 
@@ -59,7 +59,7 @@ Here the server will run backend at port 8000
 - [ ] Check voucher usage  
 
 ## 5. System Capabilities
-- [✅] Handle up to 30 user requests simultaneously  
+[PASS] Handle up to 30 user requests simultaneously  ✅
 
 
 
