@@ -59,7 +59,7 @@ Here the server will run backend at port 8000
 - [ ] Check voucher usage  
 
 ## 5. System Capabilities
-- [ ] Handle up to 30 user requests simultaneously  
+- [✅] Handle up to 30 user requests simultaneously  
 
 
 
