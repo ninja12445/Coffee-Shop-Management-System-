@@ -1,6 +1,6 @@
 UI has components for user to easily interact and can follows.
 Back on track with the project, i have one exam in another 300 class and a writing paper have to after my school account got froze  
-Should be complete by two more weeks. (in the weekend, 9 hw assignments from Financial course) but its okay eventually get through anyways (:
+Should be complete by two more weeks. (in last weekend, 9 hw assignments completed from Financial course, today i finished one exam from another course) but its okay eventually will going get through anyways (:
 
 TODO: 
 FIX front end designs 
