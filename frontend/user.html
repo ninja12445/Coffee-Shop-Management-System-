@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --danger: #ff4757;
+            --text: #333;
+            --text-light: #666;
+            --bg-card: #ffffff;
+            --bg-body: #BD9754;
+            --shadow: 0 10px 30px rgba(0,0,0,0.2);
+            --shadow-hover: 0 15px 40px rgba(0,0,0,0.2);
+            --radius: 15px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-body);
+            min-height: 100vh;
+            color: var(--text);
+            transition: background 0.3s ease;
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: white; /* White background */
+            padding: 20px 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #BD9754;
+            font-weight: bold;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .settings-btn {
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-card); /* White background */
+            color: #BD9754;
+            border: 2px solid var(--text-light);
+        }
+
+        .settings-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .menu-card {
+            background: var(--bg-card); /* White background */
+            padding: 12px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            outline: none;
+            color: #BD9754; 
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .menu-card:hover {
+                transform: translateY(-10px);
+                box-shadow: var(--shadow-hover);
+            }
+        }
+
+        .menu-card:focus-visible {
+            box-shadow: 0 0 0 3px var(--primary), var(--shadow-hover);
+        }
+
+        .menu-card i {
+            font-size: 48px;
+            color: #BD9754; /* Blue icons */
+            margin-bottom: 15px;
+        }
+
+        .menu-card h3 {
+            color: 	#BD9754;
+            margin-bottom: 10px;
+        }
+
+        .menu-card p {
+            color: var(--text-light);
+            font-size: 14px;
+            display: none; /* Hide descriptions */
+        }
+
+        /* Special styling for Settings card - now removed from main menu */
+        /* Removed Settings card styling since it's not in main menu */
+
+        .welcome-banner {
+            background: #dbbc84;
+            color: white; /* White font */
+            padding: 40px;
+            border-radius: var(--radius);
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .welcome-banner h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        /* Settings Side Panel */
+        .settings-panel {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: var(--bg-card);
+            box-shadow: -5px 0 20px rgba(0,0,0,0.2);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .settings-panel.open {
+            right: 0;
+        }
+
+        .settings-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .settings-panel-header h2 {
+            color: var(--text);
+            font-size: 24px;
+        }
+
+        .close-panel {
+            background: none;
+            border: none;
+            font-size: 54px;
+            cursor: pointer;
+            color: 	#fe2e2e;
+            transition: color 0.2s ease;
+        }
+
+        .close-panel:hover {
+            color: var(--primary);
+        }
+
+        .settings-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .settings-menu button {
+            background: var(--bg-card);
+            border: 1px solid var(--text-light);
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            color: #BD9754;
+        }
+
+        .settings-menu button:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .settings-menu button i {
+            margin-right: 10px;
+        }
+
+        /* Special styling for Logout button in settings */
+        .settings-menu button#logoutSetting {
+            background: var(--bg-card);
+            border: 1px solid var(--text-light);
+            color: #BD9754;
+        }
+
+        .settings-menu button#logoutSetting:hover {
+            background: var(--danger); /* Red background on hover */
+            color: white;
+            border-color: var(--danger);
+        }
+
+        /* Remove unnecessary elements */
+        #offline-banner,
+        #toast {
+            display: none !important;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="header">
+            <h1>My Dashboard</h1> <!-- Blue font, white background -->
+            <div class="user-info">
+                <button class="settings-btn" id="settingsBtn">
+                    <i class="fas fa-cog"></i> Settings
+                </button>
+            </div>
+        </div>
+
+        <div class="welcome-banner">
+            <h2 id="welcomeMessage">Welcome back, John!</h2> <!-- White font -->
+        </div>
+
+        <nav aria-label="Main dashboard navigation">
+            <div class="menu-grid">
+                <div class="menu-card" role="button" tabindex="0" id="profileCard">
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                    <h3>Profile</h3>
+                </div>
+
+                <div class="menu-card" role="button" tabindex="0" id="membershipCard">
+                    <i class="fas fa-users" aria-hidden="true"></i>
+                    <h3>Membership</h3>
+                </div>
+
+                <div class="menu-card" role="button" tabindex="0" id="messagesCard">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                    <h3>Messages</h3>
+                </div>
+
+                <div class="menu-card" role="button" tabindex="0" id="helpCard">
+                    <i class="fas fa-question-circle" aria-hidden="true"></i>
+                    <h3>Help</h3>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Settings Side Panel -->
+    <div class="settings-panel" id="settingsPanel">
+        <div class="settings-panel-header">
+            <h2>Settings</h2>
+            <button class="close-panel" id="closeSettings">&times;</button>
+        </div>
+        <div class="settings-menu">
+            <button id="profileSetting">
+                <i class="fas fa-user"></i> Profile
+            </button>
+            <button id="orderSetting">
+                <i class="fas fa-list"></i> Order
+            </button>
+            <button id="membershipSetting">
+                <i class="fas fa-users"></i> Membership
+            </button>
+            <button id="notificationsSetting">
+                <i class="fas fa-bell"></i> Notifications
+            </button>
+            <button id="messagesSetting">
+                <i class="fas fa-envelope"></i> Messages
+            </button>
+            <button id="logoutSetting">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </div>
+
+    <!-- Removed offline banner and toast -->
+    <div id="offline-banner">You are offline</div>
+    <div id="toast" class="show" role="alert" aria-live="polite">Navigating to profile...</div>
+
+    <script>
+        // Get DOM elements
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsPanel = document.getElementById('settingsPanel');
+        const closeSettings = document.getElementById('closeSettings');
+        const profileSetting = document.getElementById('profileSetting');
+        const orderSetting = document.getElementById('orderSetting');
+        const membershipSetting = document.getElementById('membershipSetting');
+        const notificationsSetting = document.getElementById('notificationsSetting');
+        const messagesSetting = document.getElementById('messagesSetting');
+        const logoutSetting = document.getElementById('logoutSetting');
+
+        // Menu card elements
+        const profileCard = document.getElementById('profileCard');
+        const membershipCard = document.getElementById('membershipCard');
+        const messagesCard = document.getElementById('messagesCard');
+
+        // Open settings panel
+        settingsBtn.addEventListener('click', () => {
+            settingsPanel.classList.add('open');
+        });
+
+        // Close settings panel
+        closeSettings.addEventListener('click', () => {
+            settingsPanel.classList.remove('open');
+        });
+
+        // Close panel when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!settingsPanel.contains(e.target) && e.target !== settingsBtn) {
+                settingsPanel.classList.remove('open');
+            }
+        });
+
+        // Add click handlers for settings menu items (DO NOT close panel)
+        profileSetting.addEventListener('click', () => {
+            console.log('User clicked Profile button in settings');
+            // Do not close panel
+        });
+
+        orderSetting.addEventListener('click', () => {
+            console.log('User clicked Order button in settings');
+            // Do not close panel
+        });
+
+        membershipSetting.addEventListener('click', () => {
+            console.log('User clicked Membership button in settings');
+            // Do not close panel
+        });
+
+        notificationsSetting.addEventListener('click', () => {
+            console.log('User clicked Notifications button in settings');
+            // Do not close panel
+        });
+
+        messagesSetting.addEventListener('click', () => {
+            console.log('User clicked Messages button in settings');
+            // Do not close panel
+        });
+
+        logoutSetting.addEventListener('click', () => {
+            console.log('User clicked Logout button in settings');
+            // Do not close panel
+        });
+
+        // Add click handlers for main menu cards
+        profileCard.addEventListener('click', () => {
+            console.log('User clicked Profile button');
+        });
+
+        membershipCard.addEventListener('click', () => {
+            console.log('User clicked Membership button');
+        });
+
+        messagesCard.addEventListener('click', () => {
+            console.log('User clicked Messages button');
+        });
+		
+		helpCard.addEventListener('click', () => {
+            console.log('User clicked Messages button');
+        });
+    </script>
+</body>
+</html>
+

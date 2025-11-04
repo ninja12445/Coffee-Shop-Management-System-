@@ -1,0 +1,513 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shop Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #BD9754;
+            padding: 15px 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo img {
+            width: 80px;
+            height: auto;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        nav button {
+            background: transparent;
+            border: 2px solid transparent;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        nav button:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        nav button.active {
+            background-color: white;
+            color: #BD9754;
+            border-color: white;
+        }
+
+        .findItem {
+            flex: 1;
+            max-width: 300px;
+            margin: 0 20px;
+        }
+
+        .findItem form {
+            display: flex;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        .findItem input {
+            flex: 1;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .findItem button {
+            background: transparent;
+            border: none;
+            padding: 10px 20px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .section {
+            display: none;
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #home {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        #home h1 {
+            font-size: 3em;
+            color: #BD9754;
+            margin-bottom: 20px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .menu-item h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .menu-item p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .menu-item .price {
+            font-size: 24px;
+            color: #BD9754;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .menu-item button {
+            width: 100%;
+            padding: 12px;
+            background-color: #BD9754;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-item button:hover {
+            background-color: #8B7355;
+        }
+
+        #cart-items {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-item button {
+            padding: 5px 12px;
+            background: #BD9754;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .quantity {
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .cart-total {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .cart-total h3 {
+            font-size: 28px;
+            color: #BD9754;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            max-width: 300px;
+            padding: 15px;
+            background: #BD9754;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .checkout-btn:hover {
+            background: #8B7355;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state i {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-wrap: wrap;
+            }
+
+            .findItem {
+                order: 3;
+                width: 100%;
+                margin: 10px 0 0 0;
+                max-width: 100%;
+            }
+
+            .menu-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="" alt="Coffee Shop Logo">
+        </div>
+
+        <div class="nav-buttons">
+            <button id="btn-home" class="active"><i class="fa fa-home"></i></button>
+            <button id="btn-menu"><i class="fa fa-book"></i></button>
+            <button id="btn-cart"><i class="fa fa-shopping-cart"></i> <span id="cart-count">0</span></button>
+            <button id="btn-account"><i class="fa fa-user"></i></button>
+        </div>
+
+        <div class="findItem">
+            <form id="search-form">
+                <input type="text" id="search-input" placeholder="Search items..." autocomplete="off">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </nav>
+
+    <section id="home" class="section active">
+        <h1> Coffee Shop Management System </h1>
+        <p style="font-size: 1.2em; color: #666;">An enjoyable coffee experience</p>
+    </section>
+
+    <section id="menu" class="section">
+        <h2 style="margin-bottom: 20px; color: #BD9754;">Our Menu</h2>
+        <div class="menu-grid" id="menu-list"></div>
+    </section>
+
+    <section id="cart" class="section">
+        <h2 style="margin-bottom: 20px; color: #BD9754;">Your Cart</h2>
+        <div id="cart-items"></div>
+        <div class="cart-total">
+            <h3>Total: $<span id="cart-total">0.00</span></h3>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Payment</button>
+        </div>
+    </section>
+
+    <section id="account" class="section">
+        <h2 style="margin-bottom: 20px; color: #BD9754;">Account</h2>
+        <div style="background: white; padding: 30px; border-radius: 10px;">
+            <p>Member login/registration coming soon!</p>
+        </div>
+    </section>
+
+    <script>
+        // Menu data
+        const menuItems = [
+            { id: 1, name: "Espresso", price: 3.25, description: "Rich and bold", image: "https://images.unsplash.com/photo-1517640033243-dc06bb716df5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" },
+            { id: 2, name: "Cappuccino", price: 2.80, description: "Creamy foam perfection", image: "https://images.unsplash.com/photo-1658646479124-bc31e6849497?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1251" },
+            { id: 3, name: "Latte", price: 4.50, description: "Smooth and milky", image: "https://images.unsplash.com/photo-1670515854747-3d9be05927b9?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1964" },
+            { id: 4, name: "Americano", price: 3.00, description: "Classic coffee", image: "https://plus.unsplash.com/premium_photo-1661370085023-16bf34456bbf?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" },
+            { id: 5, name: "Mocha", price: 3.15, description: "Chocolate bliss", image: "https://images.unsplash.com/photo-1527678357412-ef45dfbd9ecc?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" },
+            { id: 6, name: "Macchiato", price: 2.75, description: "Espresso with a mark", image: "https://images.unsplash.com/photo-1674642387251-04a5f9320aa4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" },
+            { id: 7, name: "Cold Brew", price: 1.80, description: "Smooth and refreshing", image: "https://images.unsplash.com/photo-1645592241237-3b05af6c194f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" },
+            { id: 8, name: "Iced Latte", price: 2.15, description: "Cool and creamy", image: "https://images.unsplash.com/photo-1527156231393-7023794f363c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=711" },
+			{ id: 9, name: "Water", price: 2.15, description: "Refreshing", image: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=688" },
+			{ id: 10, name: "Hot Chocolate", price: 2.0, description: "Rich and creamy", image: "https://plus.unsplash.com/premium_photo-1671660015357-112b00365d77?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" },
+			{ id: 11, name: "Coconut water", price: 1.75, description: "Delicious", image: "https://images.unsplash.com/photo-1617253426941-d99b541c18fe?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" }
+        ];
+
+        let cart = [];
+        let filteredItems = [...menuItems];
+
+        // Cache DOM elements
+        const sections = document.querySelectorAll('.section');
+        const navButtons = document.querySelectorAll('nav button');
+        const menuList = document.getElementById('menu-list');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        const cartCount = document.getElementById('cart-count');
+        const searchInput = document.getElementById('search-input');
+        const searchForm = document.getElementById('search-form');
+
+        // Show section function
+        function showSection(sectionId) {
+            sections.forEach(sec => sec.classList.remove('active'));
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            
+            const section = document.getElementById(sectionId);
+            if (section) section.classList.add('active');
+            
+            const btn = document.getElementById(`btn-${sectionId}`);
+            if (btn) btn.classList.add('active');
+        }
+
+        // Render menu
+        function renderMenu(items = filteredItems) {
+            if (items.length === 0) {
+                menuList.innerHTML = '<div class="empty-state"><i class="fa fa-coffee"></i><h3>No items found</h3></div>';
+                return;
+            }
+
+            menuList.innerHTML = items.map(item => `
+                <div class="menu-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <h3>${item.name}</h3>
+                    <p>${item.description}</p>
+                    <div class="price">$${item.price.toFixed(2)}</div>
+                    <button onclick="addToCart(${item.id})">Add to Cart</button>
+                </div>
+            `).join('');
+        }
+
+        // Add to cart
+        function addToCart(itemId) {
+            const item = menuItems.find(i => i.id === itemId);
+            const cartItem = cart.find(i => i.id === itemId);
+
+            if (cartItem) {
+                cartItem.quantity++;
+            } else {
+                cart.push({ ...item, quantity: 1 });
+            }
+
+            updateCart();
+        }
+
+        // Update cart display
+        function updateCart() {
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-state"><i class="fa fa-shopping-cart"></i><h3>Your cart is empty</h3></div>';
+                cartTotal.textContent = '0.00';
+                cartCount.textContent = '0';
+                return;
+            }
+
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <h4>${item.name}</h4>
+                        <p>$${item.price.toFixed(2)} each</p>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button onclick="updateQuantity(${item.id}, -1)">-</button>
+                        <span class="quantity">${item.quantity}</span>
+                        <button onclick="updateQuantity(${item.id}, 1)">+</button>
+                        <button onclick="removeFromCart(${item.id})" style="background: #d9534f; margin-left: 10px;">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = total.toFixed(2);
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+
+        // Update quantity
+        function updateQuantity(itemId, change) {
+            const cartItem = cart.find(i => i.id === itemId);
+            if (cartItem) {
+                cartItem.quantity += change;
+                if (cartItem.quantity <= 0) {
+                    removeFromCart(itemId);
+                } else {
+                    updateCart();
+                }
+            }
+        }
+
+        // Remove from cart
+        function removeFromCart(itemId) {
+            cart = cart.filter(i => i.id !== itemId);
+            updateCart();
+        }
+
+        // Checkout
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            alert(`Order total: $${cartTotal.textContent}\nThank you for your order!`);
+            cart = [];
+            updateCart();
+        }
+
+        // Search functionality with debouncing
+        let searchTimeout;
+        function handleSearch(e) {
+            e.preventDefault();
+            const query = searchInput.value.toLowerCase().trim();
+            
+            filteredItems = menuItems.filter(item => 
+                item.name.toLowerCase().includes(query) ||
+                item.description.toLowerCase().includes(query)
+            );
+            
+            renderMenu(filteredItems);
+            showSection('menu');
+        }
+
+        // Live search
+        searchInput.addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                handleSearch(e);
+            }, 300);
+        });
+
+        searchForm.addEventListener('submit', handleSearch);
+
+        // Navigation event listeners
+        document.getElementById('btn-home').addEventListener('click', () => showSection('home'));
+        document.getElementById('btn-menu').addEventListener('click', () => {
+            filteredItems = [...menuItems];
+            renderMenu();
+            showSection('menu');
+        });
+        document.getElementById('btn-cart').addEventListener('click', () => showSection('cart'));
+        document.getElementById('btn-account').addEventListener('click', () => showSection('account'));
+
+        // Initialize
+        renderMenu();
+        updateCart();
+    </script>
+</body>
+</html>
