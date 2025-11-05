@@ -63,9 +63,9 @@ Here the server will run backend at port 8000
 
 
 PASS test cases and edges:
-[PASS] Create Account, Login / Logout ✅ 
-[PASS] Manage user information ✅ 
-[PASS] Handle up to 30 user requests simultaneously  ✅
+- [PASS] Create Account, Login / Logout ✅ 
+- [PASS] Manage user information ✅ 
+- [PASS] Handle up to 30 user requests simultaneously  ✅
 
 Member Registration 
 <img width="1917" height="907" alt="image" src="https://github.com/user-attachments/assets/5d68a72f-85c5-4aa0-86ad-cc14b1b894d7" />
