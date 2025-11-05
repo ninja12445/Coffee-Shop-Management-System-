@@ -55,7 +55,7 @@ Here the server will run backend at port 8000
 - [ ] Adjust sales records  
 - [ ] View activities  
 - [ ] Track ingredients  
-- [ ] Manage user information  
+[PASS] Manage user information ✅ 
 - [ ] Check voucher usage  
 
 ## 5. System Capabilities
