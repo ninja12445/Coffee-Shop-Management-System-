@@ -54,7 +54,7 @@ Here the server will run backend at port 8000
 ## 4. Manager Controls
 - [ ] Adjust sales records  
 - [ ] View activities  
-- [ ] Track ingredients  
+- [ ] Track ingredients
 [PASS] Manage user information ✅ 
 - [ ] Check voucher usage  
 
