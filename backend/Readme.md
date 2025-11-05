@@ -22,4 +22,5 @@ whats' missing ?
 - redesign the color 
 
 what need to be replace ? 
-- the text section in black (unfinished work) okay might update in a day or two 
+- the text section in black (unfinished work) okay might update in a day or two
+- Focus on first four features in next one week. 
