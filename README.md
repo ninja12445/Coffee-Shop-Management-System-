@@ -63,7 +63,7 @@ Here the server will run backend at port 8000
 [PASS] Handle up to 30 user requests simultaneously  ✅
 
 
-PASS test cases and edges:
+Completed Sections: 
 - [PASS] Create Account, Login / Logout ✅ 
 - [PASS] Manage user information ✅ 
 - [PASS] Handle up to 30 user requests simultaneously  ✅
