@@ -1,4 +1,4 @@
-# Terminology use: 
+# Terminology use and structural clean formats for technical display : 
 + Add
 + Remove 
 + Improve
