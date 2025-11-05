@@ -11,6 +11,7 @@ Mariadb              | pip show mariadb --version
 fastapi 0.120.0      | pip show fastapi --version
 pydantic 2.12.3      | pip show pydantic --version
 ```
+pydantic library 
 
 Run via Frontend
 ```
