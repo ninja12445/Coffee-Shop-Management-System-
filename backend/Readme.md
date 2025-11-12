@@ -23,4 +23,20 @@ whats' missing ?
 
 what need to be replace ? 
 - the text section in black (unfinished work) okay might update in a day or two
-- Focus on first four features in next one week. 
+- Focus on first four features in next one week.
+
+Dev log + terminal debug: 
+12/11/2025 
+Missing Modular feature:
+[] Apply voucher into cart system 
+so i must find what is the logic / core principle behind this ? 
+[] Add, Edit, Delete Voucher (real discount)
+[] Edit items / product (no build yet)
+
+
+
+
+
+
+
+
