@@ -15,6 +15,7 @@ Fully functionalities
 10. Scan bar code
 
 User membership registration & account register 
+---
 <img width="1903" height="909" alt="image" src="https://github.com/user-attachments/assets/8f899258-0f3d-44d9-969c-6f8835d786a2" />
 whats' missing ? 
 - role base
@@ -26,6 +27,7 @@ what need to be replace ?
 - Focus on first four features in next one week.
 
 Dev log + terminal debug: 
+---
 12/11/2025 
 Missing Modular feature:
 [] Apply voucher into cart system 
