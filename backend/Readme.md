@@ -11,7 +11,8 @@ Fully functionalities
 6. Self service
 7. Wait 2 call
 8. Scan barcode
-9. Pay by cash 
+9. Pay by cash
+    
 10.Scan bar code
 
 User membership registration & account register 
