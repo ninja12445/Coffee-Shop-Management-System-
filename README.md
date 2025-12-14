@@ -68,19 +68,19 @@ Completed Sections:
 - [PASS] Manage user information ✅ 
 - [PASS] Handle up to 30 user requests simultaneously  ✅
 
-Member Registration 
+## Member Registration 
 <img width="1917" height="907" alt="image" src="https://github.com/user-attachments/assets/5d68a72f-85c5-4aa0-86ad-cc14b1b894d7" />
 
-Home 
+## Home 
 <img width="1916" height="872" alt="image" src="https://github.com/user-attachments/assets/90707c24-a545-4315-89b5-bd7faaea470a" />
 
-User personal information (after registration and logon ) Preview 
+## User personal information (after registration and logon ) Preview 
 
 <img width="1911" height="912" alt="image" src="https://github.com/user-attachments/assets/5eb6e264-a8ff-4eaa-91a1-3ff011dae0c4" />
 
 TODO:
 Member miss role base access
-Home needs to add a logo and redesign the nav bar icon and redesign the search 
+Home needs to add a logo and redesign the nav bar icon and upgrades the search can find exact products
 
 
 
