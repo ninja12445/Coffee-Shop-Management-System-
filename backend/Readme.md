@@ -30,13 +30,16 @@ User membership registration & account register
 <img width="1903" height="909" alt="image" src="https://github.com/user-attachments/assets/8f899258-0f3d-44d9-969c-6f8835d786a2" />
 
 ## What needs to get polish ? 
-- role base
-- Back navigation
-- redesign the color 
+- Role based controll access authorization
+- Back Navigation
+- Redesign UI - UX, more interactive
+- Makes it userfriendliness
+- Checks typography, bckground colour and system architectures
+- Rechecks threadings and concurrency
 
-what need to be replace ? 
-- the text section in black (unfinished work) okay might update in a day or two
-- Focus on first four features in next one week.
+## What need to be replace ? 
+- Replace menu sections -> Navbar with header and clear Section
+- Implements the remaining features and core functionalities
 
 ## Network Protocol 
 + WebSocket
