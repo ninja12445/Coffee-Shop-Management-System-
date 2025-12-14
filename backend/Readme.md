@@ -12,7 +12,7 @@ Bckend use fastAPI + uvicorn + MariaDb (have documentation links to their docs i
 8. Scan barcode
 9. Pay by cash
 
-## Implementation
+## New Accomplishments
 | Feature           | Working? |               Description                     |
 | ----------------- | -------- | --------------------------------------------- |
 | Real-time chat    | ✅        |   socketIO                                    |
