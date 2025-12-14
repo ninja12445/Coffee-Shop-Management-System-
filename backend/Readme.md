@@ -1,8 +1,7 @@
 Bckend use fastAPI + uvicorn + MariaDb (have documentation links to their docs in Reference folder)
 
 
-Fully functionalities 
-
+## Major functionalities 
 1. Real time chat (bckend + frnt end)
 2. Automatic ordering cnt down with notification (bckend + frnt end) 
 3. Membership points
@@ -12,12 +11,25 @@ Fully functionalities
 7. Wait 2 call
 8. Scan barcode
 9. Pay by cash
-10. Scan bar code
+
+## Implementation
+| Feature           | Working? |               Description                     |
+| ----------------- | -------- | --------------------------------------------- |
+| Real-time chat    | ✅        |   socketIO                                    |
+| Countdown         | ✅        | Live timer setup from backend                 |
+| Notifications     | ✅        | Send alert + confirmation & status update     |
+| Membership points | ✅        | Points add / exchange / use on order          |
+| Payments          | ✅        | Simulated card + cash code                    |
+| Preordering       | ✅        | Date picker + order scheduling                |
+| Self-service      | ✅        | Selects  items without employee               |
+| Waitlist          | ✅        | Queue and ticket calling number               |
+| QR Scan           | ✅        | QR payment processing                         |
 
 User membership registration & account register 
 ---
 <img width="1903" height="909" alt="image" src="https://github.com/user-attachments/assets/8f899258-0f3d-44d9-969c-6f8835d786a2" />
-whats' missing ? 
+
+## What needs to get polish ? 
 - role base
 - Back navigation
 - redesign the color 
@@ -33,7 +45,7 @@ Missing Modular feature:
 [] Apply voucher into cart system 
 so i must find what is the logic / core principle behind this ? 
 [] Add, Edit, Delete Voucher (real discount)
-[] Edit items / product (no build yet)
+[] Edit items / product
 
 
 
