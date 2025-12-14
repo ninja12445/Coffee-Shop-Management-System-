@@ -3,7 +3,7 @@
 - how to run unit test
 - program code
 
-# Unit Test Cases
+# Normal Cases Test
 
 | Test Case ID | Description                | Input        | Expected Output | Status |
 |--------------|----------------------------|-------------|----------------|--------|
@@ -13,7 +13,7 @@
 | TC4         | 30 User Requests Handling      | sending multiple user requests |  30 Users successfully connect and use the program   | Pass✅|
 
 
-## Edge Test Cases
+## Edge Cases Test
 
 | Test Case ID | Description                   | Input           | Expected Output | Status |
 |--------------|-------------------------------|----------------|----------------|--------|
