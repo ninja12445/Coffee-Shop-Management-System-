@@ -1,0 +1,15 @@
+## 1.System_requirements_documentation.pdf
+- Cover page (project name, your name)
+- Table of contents
+- Customer problem statements and system requirements
+- Functional requirement specification
+- System sequence diagram
+- Activity diagram
+- User interface specification
+- Traceability matrix
+- System architecture and system design
+- Algorithms and data structures (If you have those)
+- User interface design and implementation, design of tests
+- Project plan
+## 2.Brochure/flyer.pdf
+## 3.Presentation_slides.pdf (acceptable formats: .pdf or .ppt)
