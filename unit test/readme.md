@@ -8,7 +8,7 @@
 | Test Case ID | Description                | Input        | Expected Output | Status |
 |--------------|----------------------------|-------------|----------------|--------|
 | TC1         | Create Account, Login / Logout | username, password   | access / logout   | Pass✅|
-| TC2         | Connects Bckend & Front End     |  CORS, PORT Listen   | Successfully Server sent a 200  GET from uvicorn | Pass✅|
+| TC2         | Connects Bckend & Front End     |  CORS, PORT Listen   | Server confirms connection from the server to the client| Pass✅|
 | TC3         | Manage user information        | User clicks button   | View & Edit Settings   | Pass✅|
 | TC4         | 30 User Requests Handling      | sending multiple user requests |  30 Users successfully connect and use the program   | Pass✅|
 
