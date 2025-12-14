@@ -48,6 +48,20 @@ so i must find what is the logic / core principle behind this ?
 [] Edit items / product
 
 
+---
+## Network Protocol 
++ WebSocket
++ TCP / IP
++ UDP
++ QUIC
++ HTTP
++ TLS (Transport Layer Security)
++ Requests
+
+---
+# User Authentication 
++ Role Base Access Control
++ User Session with permissions (what each user can do and cannot do)
 
 
 
