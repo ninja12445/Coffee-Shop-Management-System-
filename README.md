@@ -60,21 +60,19 @@ Here the server will run backend at port 8000
 - [ ] Check voucher usage  
 
 ## 5. System Capabilities
-[PASS] Handle up to 30 user requests simultaneously  ✅
-
-
-Completed Sections: 
+- [PASS] 25 users sending requests to connect to the server simultaneously (non blocking UI)  ✅
 - [PASS] Create Account, Login / Logout ✅ 
 - [PASS] Manage user information ✅ 
 - [PASS] Handle up to 30 user requests simultaneously  ✅
-
+- [PARTIAL] Clean UI-UX design
+  
 ## Member Registration 
 <img width="1917" height="907" alt="image" src="https://github.com/user-attachments/assets/5d68a72f-85c5-4aa0-86ad-cc14b1b894d7" />
 
 ## Home 
 <img width="1916" height="872" alt="image" src="https://github.com/user-attachments/assets/90707c24-a545-4315-89b5-bd7faaea470a" />
 
-## User personal information (after registration and logon ) Preview 
+## Personal Information User Session Preview 
 
 <img width="1911" height="912" alt="image" src="https://github.com/user-attachments/assets/5eb6e264-a8ff-4eaa-91a1-3ff011dae0c4" />
 
