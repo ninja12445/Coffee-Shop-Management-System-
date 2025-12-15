@@ -66,8 +66,16 @@ Here the server will run backend at port 8000
 - [PASS] Handle up to 30 user requests simultaneously  ✅
 - [PARTIAL] Clean UI-UX design
   
-## Member Registration 
+## Member Registration Screen 
+## Before 
 <img width="1917" height="907" alt="image" src="https://github.com/user-attachments/assets/5d68a72f-85c5-4aa0-86ad-cc14b1b894d7" />
+
+## After 
+<img width="1917" height="872" alt="LoginScreenUI" src="https://github.com/user-attachments/assets/ba70255c-44f7-416d-b255-63f96a7093c7" />
+
+## Login Screen
+<img width="1911" height="861" alt="CreateAccountScreenUI" src="https://github.com/user-attachments/assets/36f496b8-dcbb-4c6e-8bdb-54e23cef737f" />
+
 
 ## Home 
 <img width="1916" height="872" alt="image" src="https://github.com/user-attachments/assets/90707c24-a545-4315-89b5-bd7faaea470a" />
