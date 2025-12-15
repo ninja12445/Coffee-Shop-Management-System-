@@ -42,7 +42,26 @@ User membership registration & account register
 - Implements the remaining features and core functionalities
 
 ## Network Protocol 
-
+How does the backend connect to the frontend and vice versa? 
+TCP 3 - Way Handshake 
+1. DNS here is my local host (my own IP address, signalling at 127.0.0.1:3000)  
+2. TCP handshake
+   - browser assigns port number
+   - it then sends SYN into DNS (which is at 127.0.0.1:3000)
+3. Python responses using SYN-ACK
+4. Next, my browser (computer connects to the backend, which is the server) uses ACK
+   - It tells the server it is ready to connect
+5. Now the connection is ready to open and established. The fascinating thing is that it listens for handshake packets
+6. Now the user begins to interact, and it sends HTTP requests
+7. Browser sends a GET method
+8. Python backend finds the exact index.html, and it then reads through the file  
+9. Server sends HTTP response [200: Status Code | OK: Status Message]
+10. Browser renders index.html file
+11. uvicorn
+   - connects to port 8000
+   --restart the server when the code is changed
+   - main.py identifies the app variable
+     
 # User Authentication 
 + Role Base Access Control
 + User Session with permissions (what each user can do and cannot do)
