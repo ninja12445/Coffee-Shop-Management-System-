@@ -11,6 +11,6 @@
 - Algorithms and data structures (If you have those) ✅ --TODO: implements in code  structure
 - User interface design and implementation, design of tests --TODO: add these
 - Project plan --TODO: add
---> need to merge and put everything in a complete file name System_requirements_documentation.pdf 
-## 2.Brochure/flyer.pdf --TODO
-## 3.Presentation_slides.pdf (acceptable formats: .pdf or .ppt) --TODO: design a presentation slides + record  
+- Need to merge and put everything in a complete file name System_requirements_documentation.pdf 
+## 2.Brochure/flyer.pd
+## 3.Presentation_slides.pdf (acceptable formats: .pdf or .ppt)
