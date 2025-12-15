@@ -42,13 +42,6 @@ User membership registration & account register
 - Implements the remaining features and core functionalities
 
 ## Network Protocol 
-+ WebSocket
-+ TCP / IP
-+ UDP
-+ QUIC
-+ HTTP
-+ TLS (Transport Layer Security)
-+ Requests
 
 # User Authentication 
 + Role Base Access Control
