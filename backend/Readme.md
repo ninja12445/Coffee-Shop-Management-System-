@@ -15,7 +15,7 @@ Bckend use fastAPI + uvicorn + MariaDb (have documentation links to their docs i
 ## New Accomplishments
 | Feature           | Working? |               Description                     |
 | ----------------- | -------- | --------------------------------------------- |
-| Real-time chat    | ✅        |   socketIO                                    |
+| Real-time chat    | ✅        |   socket                                 |
 | Countdown         | ✅        | Live timer setup from backend                 |
 | Notifications     | ✅        | Send alert + confirmation & status update     |
 | Membership points | ✅        | Points add / exchange / use on order          |
