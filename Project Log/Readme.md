@@ -150,4 +150,4 @@ Automatic order countdown with notifications (Admin + User Interface)
 **Goal:** 100% test case coverage
 
 Bug logs: 
-<img width="975" height="554" alt="image" src="https://github.com/user-attachments/assets/b4189468-8d2e-492f-8468-3e59848dd559" />
+<img width="550" height="350" alt="image" src="https://github.com/user-attachments/assets/b4189468-8d2e-492f-8468-3e59848dd559" />
