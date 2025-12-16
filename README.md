@@ -60,7 +60,6 @@ Here the server will run backend at port 8000
 - [ ] Check voucher usage  
 
 ## 5. System Capabilities
-- [PASS] 25 users sending requests to connect to the server simultaneously (non blocking UI)  ✅
 - [PASS] Create Account, Login / Logout ✅ 
 - [PASS] Manage user information ✅ 
 - [PASS] Handle up to 30 user requests simultaneously  ✅
