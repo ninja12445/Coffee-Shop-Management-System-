@@ -1,7 +1,6 @@
 Inspiration:
 [https://www.delldesignsystem.com/components/breadcrumb]
 
-
 Reference, attribution and credit sources: [https://unsplash.com/]
 - https://images.unsplash.com/photo-1517640033243-dc06bb716df5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687
 - https://images.unsplash.com/photo-1658646479124-bc31e6849497?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1251
@@ -14,3 +13,6 @@ Reference, attribution and credit sources: [https://unsplash.com/]
 - https://images.unsplash.com/photo-1548839140-29a749e1cf4d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=688
 - https://plus.unsplash.com/premium_photo-1671660015357-112b00365d77?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687
 - https://images.unsplash.com/photo-1617253426941-d99b541c18fe?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687
+ByteByteGo -- knowledge, how system design works, and valuable information. Super amazing reliable source
+- https://www.youtube.com/@ByteByteGo/posts
+  
