@@ -26,7 +26,7 @@ Bckend use fastAPI + uvicorn + MariaDb (have documentation links to their docs i
 | QR Scan           |   ❌       |                                              |
 
 ---
-* reason why real time chat not working stable is bc the message sent but have no receiver(s).
+* user can send message but miss 1 to 1 direct chat 
 
 User membership registration & account register 
 ---
