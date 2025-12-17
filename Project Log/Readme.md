@@ -150,5 +150,19 @@ Automatic order countdown with notifications (Admin + User Interface)
 **Goal:** 100% test case coverage
 
 ## Bugs
+INFO:     127.0.0.1:56829 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56829 - "GET /api/vouchers/customer2%40gmail.com HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53873 - "WebSocket /ws/chat/customer2%40gmail.com" [accepted]
+2025-12-16 23:53:58,259 - main - INFO - User customer2@gmail.com connected to chat
+INFO:     connection open
+INFO:     127.0.0.1:58909 - "GET /api/user/customer2%40gmail.com HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62311 - "GET /api/user/customer2%40gmail.com HTTP/1.1" 200 OK
+2025-12-17 00:03:29,485 - main - INFO - User customer2@gmail.com disconnected from chat
+INFO:     connection closed
+INFO:     127.0.0.1:52668 - "GET /api/user/customer2%40gmail.com HTTP/1.1" 200 OK
+2025-12-17 00:03:29,840 - main - ERROR - Error fetching products: cannot access local variable 'products' where it is not associated with a value
+INFO:     127.0.0.1:52668 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52668 - "GET /api/vouchers/customer2%40gmail.com HTTP/1.1" 200 OK
+ main - ERROR - Error fetching products: cannot access local variable 'products' where it is not associated with a value
  
 <img width="550" height="350" alt="image" src="https://github.com/user-attachments/assets/b4189468-8d2e-492f-8468-3e59848dd559" />
