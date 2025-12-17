@@ -1,266 +1,448 @@
+<!DOCTYPE html>
 <html lang="en">
-<html> 
-	<h1> Coffee Shop Management App </h1>
-	<nav>
-		
-		<ul> 
-			<li><a href="#home">Home</a></li>
-			<li><a href="#menu">Menu</a></li>
-			<li><a href="#order">Order</a></li>
-			<li><a href="#membership">Membership</a></li>
-			<li><a href="#notification">Notification</a></li>
-			<section id="home"> Home </section>
-			<section id="menu"> 
-		</ul>
-	</nav>
-	
-	
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shop - Login & Register</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: #BD9754;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 60px 50px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #BD9754;
+        }
+
+        .panel {
+            display: none;
+        }
+
+        .panel.active {
+            display: block;
+            animation: fadeSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: #1a202c;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+
+        h3 {
+            color: #4a5568;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            margin-top: 20px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        form h3:first-of-type {
+            margin-top: 0;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            color: #1a202c;
+            font-size: 15px;
+            font-weight: 500;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234a5568' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+        }
+
+        input::placeholder {
+            color: #a0aec0;
+            font-weight: 400;
+        }
+
+        input:focus,
+        select:focus {
+            background: #ffffff;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-1px);
+        }
+
+        input:hover:not(:focus),
+        select:hover:not(:focus) {
+            border-color: #cbd5e0;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 16px;
+            margin-top: 32px;
+            background: #BD9754;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(189, 151, 84, 0.3);
+            letter-spacing: 0.3px;
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(189, 151, 84, 0.4);
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(189, 151, 84, 0.3);
+        }
+
+        .switch {
+            text-align: center;
+            color: #718096;
+            font-size: 14px;
+            margin-top: 32px;
+            font-weight: 500;
+        }
+
+        .switch a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 4px;
+            transition: color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .switch a:hover {
+            color: #764ba2;
+        }
+
+        input.success,
+        select.success {
+            border-color: #48bb78;
+            background: #f0fff4;
+        }
+
+        input.error,
+        select.error {
+            border-color: #f56565;
+            background: #fff5f5;
+        }
+
+        button[type="submit"]:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        @media (max-width: 580px) {
+            .container {
+                padding: 40px 30px;
+                border-radius: 12px;
+            }
+            
+            h2 {
+                font-size: 28px;
+                margin-bottom: 32px;
+            }
+            
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            select {
+                padding: 12px 14px;
+            }
+            
+            button[type="submit"] {
+                padding: 14px;
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                padding: 32px 24px;
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
 <body>
-  <div class="container">
-    <!-- Register Panel -->
-    <div id="registerPanel" class="panel active">
-      <h2>New Member Register</h2>
-      <form id="userForm"> 
-        <h3>Username</h3>
-        <input type="text" id="name" placeholder="Name" required />
-        <h3>Email</h3> 
-        <input type="email" id="email" placeholder="Email" required />
-        <h3>Password</h3> 
-        <input type="password" id="pswrd" placeholder="Password" required />
-        <button type="submit">Register</button>
-      </form>
-      <div class="switch">Already registered? <a href="#" id="switchToLogin">Login</a></div>
+    <div class="container">
+        <!-- Register Panel -->
+        <div id="registerPanel" class="panel active">
+            <h2>Create Account</h2>
+            <form id="userForm"> 
+                <h3>Username</h3>
+                <input type="text" id="name" placeholder="Name" required />
+                
+                <h3>Email</h3> 
+                <input type="email" id="email" placeholder="Email" required />
+                
+                <h3>Password</h3> 
+                <input type="password" id="pswrd" placeholder="Password" required />
+                
+                <h3>Role</h3>
+                <select id="role" required>
+                    <option value="customer">Customer</option>
+                    <option value="employee">Employee</option>
+                    <option value="manager">Manager</option>
+                </select>
+                
+                <button type="submit">Register</button>
+            </form>
+            <div class="switch">Already registered? <a id="switchToLogin">Login</a></div>
+        </div>
+
+        <!-- Login Panel -->
+        <div id="loginPanel" class="panel">
+            <h2>Login</h2>
+            <form id="loginForm"> 
+                <h3>Email</h3> 
+                <input type="email" id="loginEmail" placeholder="Email" required />
+                <h3>Password</h3> 
+                <input type="password" id="loginPassword" placeholder="Password" required />
+                <button type="submit">Login</button>
+            </form>
+            <div class="switch">Don't have an account? <a id="switchToRegister">Register</a></div>
+        </div>
     </div>
 
-    <!-- Login Panel -->
-    <div id="loginPanel" class="panel">
-      <h2>Welcome Back</h2>
-      <form id="loginForm"> 
-        <h3>Email</h3> 
-        <input type="email" id="loginEmail" placeholder="Email" required />
-        <h3>Password</h3> 
-        <input type="password" id="loginPassword" placeholder="Password" required />
-        <button type="submit">Login</button>
-      </form>
-      <div class="switch">Don't have an account? <a href="#" id="switchToRegister">Register</a></div>
-    </div>
-  </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // Get DOM elements
+        const registerPanel = document.getElementById('registerPanel');
+        const loginPanel = document.getElementById('loginPanel');
+        const switchToLogin = document.getElementById('switchToLogin');
+        const switchToRegister = document.getElementById('switchToRegister');
+        const userForm = document.getElementById('userForm');
+        const loginForm = document.getElementById('loginForm');
 
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="script.js"></script>
+        // Switch to login panel
+        switchToLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerPanel.classList.remove('active');
+            loginPanel.classList.add('active');
+        });
+
+        // Switch to register panel
+        switchToRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginPanel.classList.remove('active');
+            registerPanel.classList.add('active');
+        });
+
+        // Register form submission
+        userForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('pswrd').value;
+            const role = document.getElementById('role').value;
+            
+            if (!name || !email || !password) {
+                alert('Please fill all fields');
+                return;
+            }
+
+            const submitBtn = userForm.querySelector('button[type="submit"]');
+            submitBtn.textContent = 'Registering...';
+            submitBtn.disabled = true;
+            
+            console.log('Registering user:', { name, email, role });
+            
+            try {
+                const response = await axios.post('http://localhost:8000/send', 
+                    { name, email, password, role },
+                    { headers: { 'Content-Type': 'application/json' } }
+                );
+                
+                console.log('Registration Success:', response.data);
+                
+                document.getElementById('name').classList.add('success');
+                document.getElementById('email').classList.add('success');
+                document.getElementById('pswrd').classList.add('success');
+                document.getElementById('role').classList.add('success');
+                
+                alert(response.data.message || 'Registration successful!');
+                
+                userForm.reset();
+                
+                setTimeout(() => {
+                    document.querySelectorAll('input, select').forEach(input => {
+                        input.classList.remove('success');
+                    });
+                }, 2000);
+                
+                setTimeout(() => {
+                    registerPanel.classList.remove('active');
+                    loginPanel.classList.add('active');
+                }, 1500);
+                
+            } catch (error) {
+                console.error('Registration error:', error);
+                
+                document.getElementById('name').classList.add('error');
+                document.getElementById('email').classList.add('error');
+                document.getElementById('pswrd').classList.add('error');
+                document.getElementById('role').classList.add('error');
+                
+                if (error.response) {
+                    console.error('Error response:', error.response.data);
+                    alert(`Error: ${error.response.data.detail || 'Registration failed'}`);
+                } else if (error.request) {
+                    alert('Network error - is the backend running on http://localhost:8000?');
+                } else {
+                    alert(`Error: ${error.message}`);
+                }
+                
+                setTimeout(() => {
+                    document.querySelectorAll('input, select').forEach(input => {
+                        input.classList.remove('error');
+                    });
+                }, 3000);
+                
+            } finally {
+                submitBtn.textContent = 'Register';
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Login form
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            
+            if (!email || !password) {
+                alert('Please fill all fields');
+                return;
+            }
+
+            const submitBtn = loginForm.querySelector('button[type="submit"]');
+            submitBtn.textContent = 'Logging in...';
+            submitBtn.disabled = true;
+            
+            console.log('Attempting login for:', email);
+            
+            try {
+                const response = await axios.post('http://localhost:8000/login', 
+                    { email, password },
+                    { 
+                        headers: { 'Content-Type': 'application/json' },
+                        withCredentials: true
+                    }
+                );
+                
+                console.log('Login Success:', response.data);
+                
+                if (response.data.success) {
+                    // Store user data in sessionStorage
+                    sessionStorage.setItem('user', JSON.stringify(response.data.user));
+                    
+                    // Show success message
+                    alert(response.data.message);
+                    
+                    // Redirect based on role
+                    if (response.data.user.role === 'customer') {
+                        window.location.href = 'home.html';
+                    } else {
+                        window.location.href = 'user.html';
+                    }
+                }
+                
+            } catch (error) {
+                console.error('Login error:', error);
+                
+                document.getElementById('loginEmail').classList.add('error');
+                document.getElementById('loginPassword').classList.add('error');
+                
+                if (error.response) {
+                    alert(`Login failed: ${error.response.data.detail || 'Invalid credentials'}`);
+                } else if (error.request) {
+                    alert('Network error - Please check if the backend is running on http://localhost:8000');
+                    console.error('Request made but no response received');
+                } else {
+                    alert(`Error: ${error.message}`);
+                }
+                
+                setTimeout(() => {
+                    document.getElementById('loginEmail').classList.remove('error');
+                    document.getElementById('loginPassword').classList.remove('error');
+                }, 3000);
+                
+            } finally {
+                submitBtn.textContent = 'Login';
+                submitBtn.disabled = false;
+            }
+        });
+
+        console.log('✅ Login/Register page loaded');
+    </script>
 </body>
-
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  line-height: 1.6;
-}
-
-.container {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 60px 50px;
-  width: 100%;
-  max-width: 450px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-  position: relative;
-  overflow: hidden;
-}
-
-.container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-}
-
-.panel {
-  display: none;
-}
-
-.panel.active {
-  display: block;
-  animation: fadeSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-h2 {
-  color: #1a202c;
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 40px;
-  text-align: center;
-  letter-spacing: -0.5px;
-}
-
-h3 {
-  color: #4a5568;
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  margin-top: 20px;
-  letter-spacing: 0.3px;
-  text-transform: uppercase;
-}
-
-form h3:first-of-type {
-  margin-top: 0;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  width: 100%;
-  padding: 14px 16px;
-  background: #f7fafc;
-  border: 2px solid #e2e8f0;
-  border-radius: 10px;
-  color: #1a202c;
-  font-size: 15px;
-  font-weight: 500;
-  outline: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-input::placeholder {
-  color: #a0aec0;
-  font-weight: 400;
-}
-
-input:focus {
-  background: #ffffff;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-  transform: translateY(-1px);
-}
-
-input:hover:not(:focus) {
-  border-color: #cbd5e0;
-}
-
-button[type="submit"] {
-  width: 100%;
-  padding: 16px;
-  margin-top: 32px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #ffffff;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-  letter-spacing: 0.3px;
-}
-
-button[type="submit"]:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
-}
-
-button[type="submit"]:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-}
-
-.switch {
-  text-align: center;
-  color: #718096;
-  font-size: 14px;
-  margin-top: 32px;
-  font-weight: 500;
-}
-
-.switch a {
-  color: #667eea;
-  text-decoration: none;
-  font-weight: 600;
-  margin-left: 4px;
-  transition: color 0.2s ease;
-}
-
-.switch a:hover {
-  color: #764ba2;
-}
-
-/* Success/Error States */
-input.success {
-  border-color: #48bb78;
-  background: #f0fff4;
-}
-
-input.error {
-  border-color: #f56565;
-  background: #fff5f5;
-}
-
-/* Loading State */
-button[type="submit"]:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-}
-
-/* Responsive Design */
-@media (max-width: 580px) {
-  .container {
-    padding: 40px 30px;
-    border-radius: 12px;
-  }
-  
-  h2 {
-    font-size: 28px;
-    margin-bottom: 32px;
-  }
-  
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    padding: 12px 14px;
-  }
-  
-  button[type="submit"] {
-    padding: 14px;
-    font-size: 15px;
-  }
-}
-
-@media (max-width: 400px) {
-  .container {
-    padding: 32px 24px;
-  }
-  
-  h2 {
-    font-size: 24px;
-  }
-}
-</style>
-	
-		
 </html>

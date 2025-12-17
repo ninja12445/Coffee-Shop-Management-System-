@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coffee Shop Management System</title>
+    <title>Coffee Shop - Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         * {
@@ -32,9 +31,9 @@
             z-index: 100;
         }
 
-        .logo img {
-            width: 80px;
-            height: auto;
+        .logo {
+            color: white;
+            font-size: 24px;
         }
 
         .nav-buttons {
@@ -42,7 +41,7 @@
             gap: 10px;
         }
 
-        nav button {
+        nav button, nav a {
             background: transparent;
             border: 2px solid transparent;
             color: white;
@@ -51,45 +50,17 @@
             border-radius: 5px;
             font-size: 16px;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
         }
 
-        nav button:hover {
+        nav button:hover, nav a:hover {
             background-color: rgba(255,255,255,0.2);
         }
 
-        nav button.active {
+        nav button.active, nav a.active {
             background-color: white;
             color: #BD9754;
-            border-color: white;
-        }
-
-        .findItem {
-            flex: 1;
-            max-width: 300px;
-            margin: 0 20px;
-        }
-
-        .findItem form {
-            display: flex;
-            background: white;
-            border-radius: 25px;
-            overflow: hidden;
-        }
-
-        .findItem input {
-            flex: 1;
-            border: none;
-            padding: 10px 20px;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .findItem button {
-            background: transparent;
-            border: none;
-            padding: 10px 20px;
-            color: #333;
-            cursor: pointer;
         }
 
         .section {
@@ -133,20 +104,11 @@
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
         }
 
         .menu-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-        }
-
-        .menu-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 15px;
         }
 
         .menu-item h3 {
@@ -183,7 +145,7 @@
             background-color: #8B7355;
         }
 
-        #cart-items {
+        .cart-section {
             background: white;
             border-radius: 10px;
             padding: 20px;
@@ -202,10 +164,6 @@
             border-bottom: none;
         }
 
-        .cart-item-info {
-            flex: 1;
-        }
-
         .cart-item-actions {
             display: flex;
             align-items: center;
@@ -213,18 +171,20 @@
         }
 
         .cart-item button {
-            padding: 5px 12px;
+            padding: 8px 15px;
             background: #BD9754;
             color: white;
             border: none;
             border-radius: 3px;
             cursor: pointer;
+            font-size: 18px;
         }
 
         .quantity {
             font-weight: bold;
             min-width: 30px;
             text-align: center;
+            font-size: 18px;
         }
 
         .cart-total {
@@ -268,49 +228,79 @@
             margin-bottom: 20px;
         }
 
-        @media (max-width: 768px) {
-            nav {
-                flex-wrap: wrap;
-            }
-
-            .findItem {
-                order: 3;
-                width: 100%;
-                margin: 10px 0 0 0;
-                max-width: 100%;
-            }
-
-            .menu-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 15px;
-            }
+        .notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: none;
         }
+
+        .notification.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(400px); }
+            to { transform: translateX(0); }
+        }
+
+        .cart-badge {
+            background: white;
+            color: #BD9754;
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-left: 5px;
+            font-weight: bold;
+        }
+		
+		.menu-item img {
+			width: 100%;
+			height: 180px;
+			object-fit: cover;
+			border-radius: 8px;
+			margin-bottom: 12px;
+		}
+
+
     </style>
 </head>
 <body>
     <nav>
         <div class="logo">
-            <img src="" alt="Coffee Shop Logo">
+            <i class="fa fa-coffee"></i> Coffee Shop
         </div>
 
         <div class="nav-buttons">
-            <button id="btn-home" class="active"><i class="fa fa-home"></i></button>
-            <button id="btn-menu"><i class="fa fa-book"></i></button>
-            <button id="btn-cart"><i class="fa fa-shopping-cart"></i> <span id="cart-count">0</span></button>
-            <button id="btn-account"><i class="fa fa-user"></i></button>
-        </div>
-
-        <div class="findItem">
-            <form id="search-form">
-                <input type="text" id="search-input" placeholder="Search items..." autocomplete="off">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
+            <button id="btn-home" class="active">
+                <i class="fa fa-home"></i> Home
+            </button>
+            <button id="btn-menu">
+                <i class="fa fa-book"></i> Menu
+            </button>
+            <button id="btn-cart">
+                <i class="fa fa-shopping-cart"></i> Cart 
+                <span id="cart-count" class="cart-badge">0</span>
+            </button>
+            <a href="user.html" id="btn-account">
+                <i class="fa fa-user"></i> Dashboard
+            </a>
         </div>
     </nav>
 
     <section id="home" class="section active">
-        <h1> Coffee Shop Management System </h1>
-        <p style="font-size: 1.2em; color: #666;">An enjoyable coffee experience</p>
+        <h1> Coffee Shop Management App</h1>
+        <p style="font-size: 1.2em; color: #666;">Gives the best exprience for our customer </p>
+        <div style="margin-top: 40px;">
+            <button class="checkout-btn" onclick="showSection('menu')">
+                <i class="fa fa-book"></i> View Menu
+            </button>
+        </div>
     </section>
 
     <section id="menu" class="section">
@@ -323,96 +313,112 @@
         <div id="cart-items"></div>
         <div class="cart-total">
             <h3>Total: $<span id="cart-total">0.00</span></h3>
-            <button class="checkout-btn" onclick="checkout()">Proceed to Payment</button>
+            <button class="checkout-btn" onclick="goToCheckout()">
+                <i class="fa fa-credit-card"></i> Proceed To Checkout
+            </button>
         </div>
     </section>
 
-    <section id="account" class="section">
-        <h2 style="margin-bottom: 20px; color: #BD9754;">Account</h2>
-        <div style="background: white; padding: 30px; border-radius: 10px;">
-            <p>Member login/registration coming soon!</p>
-        </div>
-    </section>
+    <div id="notification" class="notification">
+        <p id="notificationText"></p>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="shared-cart.js"></script>
     <script>
-        // Menu data
-        const menuItems = [
-            { id: 1, name: "Espresso", price: 3.25, description: "Rich and bold", image: "https://images.unsplash.com/photo-1517640033243-dc06bb716df5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" },
-            { id: 2, name: "Cappuccino", price: 2.80, description: "Creamy foam perfection", image: "https://images.unsplash.com/photo-1658646479124-bc31e6849497?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1251" },
-            { id: 3, name: "Latte", price: 4.50, description: "Smooth and milky", image: "https://images.unsplash.com/photo-1670515854747-3d9be05927b9?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1964" },
-            { id: 4, name: "Americano", price: 3.00, description: "Classic coffee", image: "https://plus.unsplash.com/premium_photo-1661370085023-16bf34456bbf?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" },
-            { id: 5, name: "Mocha", price: 3.15, description: "Chocolate bliss", image: "https://images.unsplash.com/photo-1527678357412-ef45dfbd9ecc?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" },
-            { id: 6, name: "Macchiato", price: 2.75, description: "Espresso with a mark", image: "https://images.unsplash.com/photo-1674642387251-04a5f9320aa4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" },
-            { id: 7, name: "Cold Brew", price: 1.80, description: "Smooth and refreshing", image: "https://images.unsplash.com/photo-1645592241237-3b05af6c194f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" },
-            { id: 8, name: "Iced Latte", price: 2.15, description: "Cool and creamy", image: "https://images.unsplash.com/photo-1527156231393-7023794f363c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=711" },
-			{ id: 9, name: "Water", price: 2.15, description: "Refreshing", image: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=688" },
-			{ id: 10, name: "Hot Chocolate", price: 2.0, description: "Rich and creamy", image: "https://plus.unsplash.com/premium_photo-1671660015357-112b00365d77?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" },
-			{ id: 11, name: "Coconut water", price: 1.75, description: "Delicious", image: "https://images.unsplash.com/photo-1617253426941-d99b541c18fe?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" }
-        ];
-
-        let cart = [];
-        let filteredItems = [...menuItems];
-
-        // Cache DOM elements
-        const sections = document.querySelectorAll('.section');
-        const navButtons = document.querySelectorAll('nav button');
-        const menuList = document.getElementById('menu-list');
-        const cartItems = document.getElementById('cart-items');
-        const cartTotal = document.getElementById('cart-total');
-        const cartCount = document.getElementById('cart-count');
-        const searchInput = document.getElementById('search-input');
-        const searchForm = document.getElementById('search-form');
-
-        // Show section function
-        function showSection(sectionId) {
-            sections.forEach(sec => sec.classList.remove('active'));
-            navButtons.forEach(btn => btn.classList.remove('active'));
-            
-            const section = document.getElementById(sectionId);
-            if (section) section.classList.add('active');
-            
-            const btn = document.getElementById(`btn-${sectionId}`);
-            if (btn) btn.classList.add('active');
+        let products = [];
+		
+function addToCart(itemId) {
+            const item = products.find(i => i.id === itemId);
+            // Use the shared cart manager
+            window.cartManager.addItem(item);
+            showNotification(`✅ ${item.name} added to cart!`);
         }
 
-        // Render menu
-        function renderMenu(items = filteredItems) {
-            if (items.length === 0) {
-                menuList.innerHTML = '<div class="empty-state"><i class="fa fa-coffee"></i><h3>No items found</h3></div>';
-                return;
+        // Load products on init
+        async function loadProducts() {
+            try {
+                const response = await axios.get('http://localhost:8000/api/products');
+                products = response.data;
+                console.log('✅ Loaded', products.length, 'products');
+            } catch (error) {
+                console.error('❌ Error loading products:', error);
+                showNotification('⚠️ Using default menu (database not connected)');
+                products = [
+                        { id: 1, name: "Espresso", price: 3.25, description: "Rich and bold", image: "https://images.unsplash.com/photo-1517640033243-dc06bb716df5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" },
+						{ id: 2, name: "Cappuccino", price: 2.80, description: "Creamy foam perfection", image: "https://images.unsplash.com/photo-1658646479124-bc31e6849497?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1251" },
+						{ id: 3, name: "Latte", price: 4.50, description: "Smooth and milky", image: "https://images.unsplash.com/photo-1670515854747-3d9be05927b9?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1964" },
+						{ id: 4, name: "Americano", price: 3.00, description: "Classic coffee", image: "https://plus.unsplash.com/premium_photo-1661370085023-16bf34456bbf?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" },
+						{ id: 5, name: "Mocha", price: 3.15, description: "Chocolate bliss", image: "https://images.unsplash.com/photo-1527678357412-ef45dfbd9ecc?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" },
+						{ id: 6, name: "Macchiato", price: 2.75, description: "Espresso with a mark", image: "https://images.unsplash.com/photo-1674642387251-04a5f9320aa4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" },
+						{ id: 7, name: "Cold Brew", price: 1.80, description: "Smooth and refreshing", image: "https://images.unsplash.com/photo-1645592241237-3b05af6c194f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" },
+						{ id: 8, name: "Iced Latte", price: 2.15, description: "Cool and creamy", image: "https://images.unsplash.com/photo-1527156231393-7023794f363c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=711" },
+						{ id: 9, name: "Water", price: 2.15, description: "Refreshing", image: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=688" },
+						{ id: 10, name: "Hot Chocolate", price: 2.0, description: "Rich and creamy", image: "https://plus.unsplash.com/premium_photo-1671660015357-112b00365d77?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" },
+						{ id: 11, name: "Coconut water", price: 1.75, description: "Delicious", image: "https://images.unsplash.com/photo-1617253426941-d99b541c18fe?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" }
+                ];
             }
-
-            menuList.innerHTML = items.map(item => `
-                <div class="menu-item">
-                    <img src="${item.image}" alt="${item.name}">
-                    <h3>${item.name}</h3>
-                    <p>${item.description}</p>
-                    <div class="price">$${item.price.toFixed(2)}</div>
-                    <button onclick="addToCart(${item.id})">Add to Cart</button>
-                </div>
-            `).join('');
+            renderMenu();
         }
 
-        // Add to cart
+
+        function renderMenu() {
+			const menuList = document.getElementById('menu-list');
+
+			if (!products || products.length === 0) {
+				menuList.innerHTML = `
+					<div class="empty-state">
+						<i class="fa fa-coffee"></i>
+						<h3>No items found</h3>
+					</div>
+				`;
+				return;
+			}
+
+			menuList.innerHTML = products.map(item => `
+				<div class="menu-item">
+					<img src="${item.image || 'https://images.unsplash.com/photo-1509042239860-f550ce710b93'}"
+     alt="${item.name}">
+					<h3>${item.name}</h3>
+					<p>${item.description}</p>
+					<div class="price">$${item.price.toFixed(2)}</div>
+					<button onclick="addToCart(${item.id})">
+						<i class="fa fa-plus"></i> Add to Cart
+					</button>
+				</div>
+			`).join('');
+		}
+
+
         function addToCart(itemId) {
-            const item = menuItems.find(i => i.id === itemId);
-            const cartItem = cart.find(i => i.id === itemId);
+            const item = products.find(i => i.id === itemId);
+            if (!item) return;
 
-            if (cartItem) {
-                cartItem.quantity++;
-            } else {
-                cart.push({ ...item, quantity: 1 });
-            }
-
-            updateCart();
+            // Use shared cart manager
+            window.cartManager.addItem(item);
+            
+            showNotification(`✅ ${item.name} added to cart!`);
+            updateCartDisplay();
         }
 
-        // Update cart display
-        function updateCart() {
+        function updateCartDisplay() {
+            const cart = window.cartManager.getCart();
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const cartCount = document.getElementById('cart-count');
+            
+            const itemCount = window.cartManager.getItemCount();
+            cartCount.textContent = itemCount;
+
             if (cart.length === 0) {
-                cartItems.innerHTML = '<div class="empty-state"><i class="fa fa-shopping-cart"></i><h3>Your cart is empty</h3></div>';
+                cartItems.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fa fa-shopping-cart"></i>
+                        <h3>Your cart is empty</h3>
+                        <p>Add some items from the menu!</p>
+                    </div>
+                `;
                 cartTotal.textContent = '0.00';
-                cartCount.textContent = '0';
                 return;
             }
 
@@ -426,88 +432,97 @@
                         <button onclick="updateQuantity(${item.id}, -1)">-</button>
                         <span class="quantity">${item.quantity}</span>
                         <button onclick="updateQuantity(${item.id}, 1)">+</button>
-                        <button onclick="removeFromCart(${item.id})" style="background: #d9534f; margin-left: 10px;">
+                        <button onclick="removeFromCart(${item.id})" style="background: #FF0000; margin-left: 20px;">
                             <i class="fa fa-trash"></i>
                         </button>
                     </div>
                 </div>
             `).join('');
 
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const total = window.cartManager.getTotal();
             cartTotal.textContent = total.toFixed(2);
-            
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCount.textContent = totalItems;
         }
 
-        // Update quantity
         function updateQuantity(itemId, change) {
-            const cartItem = cart.find(i => i.id === itemId);
-            if (cartItem) {
-                cartItem.quantity += change;
-                if (cartItem.quantity <= 0) {
-                    removeFromCart(itemId);
-                } else {
-                    updateCart();
-                }
-            }
+            window.cartManager.updateQuantity(itemId, change);
+            updateCartDisplay();
         }
 
-        // Remove from cart
         function removeFromCart(itemId) {
-            cart = cart.filter(i => i.id !== itemId);
-            updateCart();
+            window.cartManager.removeItem(itemId);
+            updateCartDisplay();
+            showNotification('🗑️ Item removed from cart');
         }
 
-        // Checkout
-        function checkout() {
+        function goToCheckout() {
+            const cart = window.cartManager.getCart();
+            
             if (cart.length === 0) {
-                alert('Your cart is empty!');
+                showNotification('⚠️ Your cart is empty!');
                 return;
             }
-            alert(`Order total: $${cartTotal.textContent}\nThank you for your order!`);
-            cart = [];
-            updateCart();
+
+            const user = sessionStorage.getItem('user');
+            if (!user) {
+                showNotification('⚠️ Please login to checkout');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+                return;
+            }
+
+            // Go to user dashboard to complete checkout
+            window.location.href = 'user.html';
         }
 
-        // Search functionality with debouncing
-        let searchTimeout;
-        function handleSearch(e) {
-            e.preventDefault();
-            const query = searchInput.value.toLowerCase().trim();
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('nav button, nav a').forEach(btn => btn.classList.remove('active'));
             
-            filteredItems = menuItems.filter(item => 
-                item.name.toLowerCase().includes(query) ||
-                item.description.toLowerCase().includes(query)
-            );
+            const section = document.getElementById(sectionId);
+            if (section) section.classList.add('active');
             
-            renderMenu(filteredItems);
-            showSection('menu');
+            const btn = document.getElementById(`btn-${sectionId}`);
+            if (btn) btn.classList.add('active');
+
+            if (sectionId === 'cart') {
+                updateCartDisplay();
+            }
         }
 
-        // Live search
-        searchInput.addEventListener('input', (e) => {
-            clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => {
-                handleSearch(e);
-            }, 300);
-        });
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            document.getElementById('notificationText').textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
 
-        searchForm.addEventListener('submit', handleSearch);
-
-        // Navigation event listeners
+        // Event listeners
         document.getElementById('btn-home').addEventListener('click', () => showSection('home'));
-        document.getElementById('btn-menu').addEventListener('click', () => {
-            filteredItems = [...menuItems];
-            renderMenu();
-            showSection('menu');
-        });
+        document.getElementById('btn-menu').addEventListener('click', () => showSection('menu'));
         document.getElementById('btn-cart').addEventListener('click', () => showSection('cart'));
-        document.getElementById('btn-account').addEventListener('click', () => showSection('account'));
+
+        // Listen for cart updates
+        window.addEventListener('cartUpdated', updateCartDisplay);
 
         // Initialize
-        renderMenu();
-        updateCart();
+        loadProducts();
+        updateCartDisplay();
+		showSection('menu');  
+
+        // Check if user is logged in
+        const user = sessionStorage.getItem('user');
+        if (user) {
+            const userData = JSON.parse(user);
+            console.log('✅ Logged in as:', userData.name);
+        } else {
+            console.log('⚠️ Not logged in');
+        }
+
+        console.log('✅ Home page loaded');
     </script>
 </body>
 </html>

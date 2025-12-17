@@ -3,22 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Dashboard - Coffee Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #667eea;
-            --secondary: #764ba2;
-            --danger: #ff4757;
-            --text: #333;
-            --text-light: #666;
-            --bg-card: #ffffff;
-            --bg-body: #BD9754;
-            --shadow: 0 10px 30px rgba(0,0,0,0.2);
-            --shadow-hover: 0 15px 40px rgba(0,0,0,0.2);
-            --radius: 15px;
-            --transition: all 0.3s ease;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -27,10 +14,9 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg-body);
+            background: #BD9754;
             min-height: 100vh;
-            color: var(--text);
-            transition: background 0.3s ease;
+            color: #333;
         }
 
         .dashboard-container {
@@ -40,10 +26,10 @@
         }
 
         .header {
-            background: white; /* White background */
+            background: white;
             padding: 20px 30px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -55,33 +41,42 @@
             font-weight: bold;
         }
 
-        .user-info {
+        .header-actions {
             display: flex;
-            align-items: center;
-            gap: 15px;
+            gap: 10px;
         }
 
-        .settings-btn {
+        .btn {
             border: none;
             padding: 10px 16px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 18px;
-            transition: var(--transition);
+            font-size: 16px;
+            transition: all 0.3s;
             display: flex;
             align-items: center;
             gap: 6px;
-            background: var(--bg-card); /* White background */
-            color: #BD9754;
-            border: 2px solid var(--text-light);
         }
 
-        .settings-btn:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.1);
-            background: var(--primary);
+        .btn-primary {
+            background: #BD9754;
             color: white;
-            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: #8B7355;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #BD9754;
+            border: 2px solid #BD9754;
+        }
+
+        .btn-secondary:hover {
+            background: #BD9754;
+            color: white;
         }
 
         .menu-grid {
@@ -92,311 +87,1410 @@
         }
 
         .menu-card {
-            background: var(--bg-card); /* White background */
-            padding: 12px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s;
             text-align: center;
-            outline: none;
-            color: #BD9754; 
         }
 
-        @media (prefers-reduced-motion: no-preference) {
-            .menu-card:hover {
-                transform: translateY(-10px);
-                box-shadow: var(--shadow-hover);
-            }
-        }
-
-        .menu-card:focus-visible {
-            box-shadow: 0 0 0 3px var(--primary), var(--shadow-hover);
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
 
         .menu-card i {
             font-size: 48px;
-            color: #BD9754; /* Blue icons */
+            color: #BD9754;
             margin-bottom: 15px;
         }
 
         .menu-card h3 {
-            color: 	#BD9754;
+            color: #333;
             margin-bottom: 10px;
         }
 
-        .menu-card p {
-            color: var(--text-light);
-            font-size: 14px;
-            display: none; /* Hide descriptions */
-        }
-
-        /* Special styling for Settings card - now removed from main menu */
-        /* Removed Settings card styling since it's not in main menu */
-
-        .welcome-banner {
-            background: #dbbc84;
-            color: white; /* White font */
-            padding: 40px;
-            border-radius: var(--radius);
-            margin-bottom: 30px;
-            box-shadow: var(--shadow);
-        }
-
-        .welcome-banner h2 {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-
-        /* Settings Side Panel */
-        .settings-panel {
+        .modal {
+            display: none;
             position: fixed;
             top: 0;
-            right: -300px;
-            width: 300px;
-            height: 100vh;
-            background: var(--bg-card);
-            box-shadow: -5px 0 20px rgba(0,0,0,0.2);
-            z-index: 1001;
-            transition: right 0.3s ease;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 80vh;
             overflow-y: auto;
-            padding: 20px;
         }
 
-        .settings-panel.open {
-            right: 0;
-        }
-
-        .settings-panel-header {
+        .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--text-light);
             margin-bottom: 20px;
         }
 
-        .settings-panel-header h2 {
-            color: var(--text);
+        .modal-close {
             font-size: 24px;
-        }
-
-        .close-panel {
-            background: none;
-            border: none;
-            font-size: 54px;
             cursor: pointer;
-            color: 	#fe2e2e;
-            transition: color 0.2s ease;
+            color: #666;
         }
 
-        .close-panel:hover {
-            color: var(--primary);
+        .form-group {
+            margin-bottom: 20px;
         }
 
-        .settings-menu {
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #BD9754;
+            color: white;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 3000;
+            display: none;
+        }
+
+        .notification.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(400px); }
+            to { transform: translateX(0); }
+        }
+
+        .chat-container {
+            height: 400px;
             display: flex;
             flex-direction: column;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .message {
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+
+        .message.sent {
+            background: #BD9754;
+            color: white;
+            margin-left: auto;
+        }
+
+        .message.received {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .message .sender {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+
+        .chat-input {
+            display: flex;
             gap: 10px;
         }
 
-        .settings-menu button {
-            background: var(--bg-card);
-            border: 1px solid var(--text-light);
-            padding: 12px 16px;
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: #f9f9f9;
+            padding: 20px;
             border-radius: 8px;
+            text-align: center;
+        }
+
+        .product-card h4 {
+            color: #BD9754;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 24px;
+            color: #BD9754;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .voucher-item {
+            padding: 15px;
+            border: 2px solid #BD9754;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .voucher-code {
+            font-size: 18px;
+            font-weight: bold;
+            color: #BD9754;
+        }
+
+        .cart-item {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .cart-actions button {
+            padding: 8px 15px;
+            background: #BD9754;
+            color: white;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
-            text-align: left;
-            font-size: 16px;
-            transition: all 0.2s ease;
+        }
+
+        .payment-method {
+            margin: 20px 0;
+        }
+
+        .payment-method label {
+            display: block;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .payment-method input[type="radio"]:checked + label {
+            border-color: #BD9754;
+            background: #f0f0f0;
+        }
+
+        .credit-card-form {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .credit-card-form.active {
+            display: block;
+        }
+
+        .countdown-timer {
+            font-size: 24px;
+            font-weight: bold;
             color: #BD9754;
-        }
-
-        .settings-menu button:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .settings-menu button i {
-            margin-right: 10px;
-        }
-
-        /* Special styling for Logout button in settings */
-        .settings-menu button#logoutSetting {
-            background: var(--bg-card);
-            border: 1px solid var(--text-light);
-            color: #BD9754;
-        }
-
-        .settings-menu button#logoutSetting:hover {
-            background: var(--danger); /* Red background on hover */
-            color: white;
-            border-color: var(--danger);
-        }
-
-        /* Remove unnecessary elements */
-        #offline-banner,
-        #toast {
-            display: none !important;
+            text-align: center;
+            margin: 20px 0;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="dashboard-container">
         <div class="header">
-            <h1>My Dashboard</h1> <!-- Blue font, white background -->
-            <div class="user-info">
-                <button class="settings-btn" id="settingsBtn">
-                    <i class="fas fa-cog"></i> Settings
+            <h1 id="welcomeText">Welcome!</h1>
+            <div class="header-actions">
+                <button class="btn btn-secondary" onclick="window.location.href='home.html'">
+                    <i class="fas fa-home"></i> Back to Home
+                </button>
+                <button class="btn btn-primary" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
                 </button>
             </div>
         </div>
 
-        <div class="welcome-banner">
-            <h2 id="welcomeMessage">Welcome back, John!</h2> <!-- White font -->
-        </div>
-
-        <nav aria-label="Main dashboard navigation">
+        <!-- Customer Dashboard -->
+        <div id="customerDashboard" style="display: none;">
             <div class="menu-grid">
-                <div class="menu-card" role="button" tabindex="0" id="profileCard">
-                    <i class="fas fa-user" aria-hidden="true"></i>
-                    <h3>Profile</h3>
+                <div class="menu-card" onclick="showMenu()">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Menu & Shop</h3>
                 </div>
-
-                <div class="menu-card" role="button" tabindex="0" id="membershipCard">
-                    <i class="fas fa-users" aria-hidden="true"></i>
-                    <h3>Membership</h3>
+                <div class="menu-card" onclick="showCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3>My Cart</h3>
                 </div>
-
-                <div class="menu-card" role="button" tabindex="0" id="messagesCard">
-                    <i class="fas fa-envelope" aria-hidden="true"></i>
-                    <h3>Messages</h3>
+                <div class="menu-card" onclick="showMembership()">
+                    <i class="fas fa-star"></i>
+                    <h3>Membership Points</h3>
                 </div>
-
-                <div class="menu-card" role="button" tabindex="0" id="helpCard">
-                    <i class="fas fa-question-circle" aria-hidden="true"></i>
-                    <h3>Help</h3>
+                <div class="menu-card" onclick="showChat()">
+                    <i class="fas fa-comments"></i>
+                    <h3>Chat Support</h3>
+                </div>
+                <div class="menu-card" onclick="showProfile()">
+                    <i class="fas fa-user"></i>
+                    <h3>My Profile</h3>
+                </div>
+                <div class="menu-card" onclick="showPreorder()">
+                    <i class="fas fa-clock"></i>
+                    <h3>Pre-order</h3>
                 </div>
             </div>
-        </nav>
+        </div>
+
+        <!-- Employee Dashboard -->
+        <div id="employeeDashboard" style="display: none;">
+            <div class="menu-grid">
+                <div class="menu-card" onclick="showManageProducts()">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Manage Products</h3>
+                </div>
+                <div class="menu-card" onclick="showWaitList()">
+                    <i class="fas fa-list"></i>
+                    <h3>Wait List Queue</h3>
+                </div>
+                <div class="menu-card" onclick="showPreorders()">
+                    <i class="fas fa-clock"></i>
+                    <h3>Pre-orders</h3>
+                </div>
+                <div class="menu-card" onclick="showChat()">
+                    <i class="fas fa-comments"></i>
+                    <h3>Customer Chat</h3>
+                </div>
+                <div class="menu-card" onclick="showCustomerPoints()">
+                    <i class="fas fa-star"></i>
+                    <h3>Customer Points</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manager Dashboard -->
+        <div id="managerDashboard" style="display: none;">
+            <div class="menu-grid">
+                <div class="menu-card" onclick="showInventory()">
+                    <i class="fas fa-box"></i>
+                    <h3>Inventory</h3>
+                </div>
+                <div class="menu-card" onclick="showSalesReport()">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Sales Reports</h3>
+                </div>
+                <div class="menu-card" onclick="showBestSelling()">
+                    <i class="fas fa-star"></i>
+                    <h3>Best Selling Items</h3>
+                </div>
+                <div class="menu-card" onclick="showRevenueReport()">
+                    <i class="fas fa-dollar-sign"></i>
+                    <h3>Revenue Report</h3>
+                </div>
+                <div class="menu-card" onclick="showChat()">
+                    <i class="fas fa-comments"></i>
+                    <h3>Team Chat</h3>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Settings Side Panel -->
-    <div class="settings-panel" id="settingsPanel">
-        <div class="settings-panel-header">
-            <h2>Settings</h2>
-            <button class="close-panel" id="closeSettings">&times;</button>
-        </div>
-        <div class="settings-menu">
-            <button id="profileSetting">
-                <i class="fas fa-user"></i> Profile
-            </button>
-            <button id="orderSetting">
-                <i class="fas fa-list"></i> Order
-            </button>
-            <button id="membershipSetting">
-                <i class="fas fa-users"></i> Membership
-            </button>
-            <button id="notificationsSetting">
-                <i class="fas fa-bell"></i> Notifications
-            </button>
-            <button id="messagesSetting">
-                <i class="fas fa-envelope"></i> Messages
-            </button>
-            <button id="logoutSetting">
-                <i class="fas fa-sign-out-alt"></i> Logout
-            </button>
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Modal</h2>
+                <span class="modal-close" onclick="closeModal()">&times;</span>
+            </div>
+            <div id="modalBody"></div>
         </div>
     </div>
 
-    <!-- Removed offline banner and toast -->
-    <div id="offline-banner">You are offline</div>
-    <div id="toast" class="show" role="alert" aria-live="polite">Navigating to profile...</div>
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <p id="notificationText"></p>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="shared-cart.js"></script>
     <script>
-        // Get DOM elements
-        const settingsBtn = document.getElementById('settingsBtn');
-        const settingsPanel = document.getElementById('settingsPanel');
-        const closeSettings = document.getElementById('closeSettings');
-        const profileSetting = document.getElementById('profileSetting');
-        const orderSetting = document.getElementById('orderSetting');
-        const membershipSetting = document.getElementById('membershipSetting');
-        const notificationsSetting = document.getElementById('notificationsSetting');
-        const messagesSetting = document.getElementById('messagesSetting');
-        const logoutSetting = document.getElementById('logoutSetting');
+        // Global State
+        let currentUser = null;
+        let products = [];
+        let vouchers = [];
+        let chatWebSocket = null;
 
-        // Menu card elements
-        const profileCard = document.getElementById('profileCard');
-        const membershipCard = document.getElementById('membershipCard');
-        const messagesCard = document.getElementById('messagesCard');
+        // Initialize
+        window.addEventListener('load', async () => {
+            const userData = sessionStorage.getItem('user');
+            if (!userData) {
+                window.location.href = 'index.html';
+                return;
+            }
 
-        // Open settings panel
-        settingsBtn.addEventListener('click', () => {
-            settingsPanel.classList.add('open');
-        });
+            currentUser = JSON.parse(userData);
+            
+            await refreshUserData();
+            
+            document.getElementById('welcomeText').textContent = `Welcome, ${currentUser.name}! (${currentUser.role})`;
 
-        // Close settings panel
-        closeSettings.addEventListener('click', () => {
-            settingsPanel.classList.remove('open');
-        });
+            showDashboard(currentUser.role);
 
-        // Close panel when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!settingsPanel.contains(e.target) && e.target !== settingsBtn) {
-                settingsPanel.classList.remove('open');
+            await loadProducts();
+            if (currentUser.role === 'customer') {
+                await loadVouchers();
             }
         });
 
-        // Add click handlers for settings menu items (DO NOT close panel)
-        profileSetting.addEventListener('click', () => {
-            console.log('User clicked Profile button in settings');
-            // Do not close panel
-        });
+        async function refreshUserData() {
+            try {
+                const response = await axios.get(`http://localhost:8000/api/user/${currentUser.email}`);
+                currentUser.points = response.data.points;
+                currentUser.name = response.data.name;
+                currentUser.role = response.data.role;
+                sessionStorage.setItem('user', JSON.stringify(currentUser));
+            } catch (error) {
+                console.error('Error refreshing user data:', error);
+            }
+        }
 
-        orderSetting.addEventListener('click', () => {
-            console.log('User clicked Order button in settings');
-            // Do not close panel
-        });
+        function showDashboard(role) {
+            document.getElementById('customerDashboard').style.display = 'none';
+            document.getElementById('employeeDashboard').style.display = 'none';
+            document.getElementById('managerDashboard').style.display = 'none';
 
-        membershipSetting.addEventListener('click', () => {
-            console.log('User clicked Membership button in settings');
-            // Do not close panel
-        });
+            if (role === 'customer') {
+                document.getElementById('customerDashboard').style.display = 'block';
+            } else if (role === 'employee') {
+                document.getElementById('employeeDashboard').style.display = 'block';
+            } else if (role === 'manager') {
+                document.getElementById('managerDashboard').style.display = 'block';
+            }
+        }
 
-        notificationsSetting.addEventListener('click', () => {
-            console.log('User clicked Notifications button in settings');
-            // Do not close panel
-        });
+        async function loadProducts() {
+            try {
+                const response = await axios.get('http://localhost:8000/api/products');
+                products = response.data.products;
+            } catch (error) {
+                console.error('Error loading products:', error);
+            }
+        }
 
-        messagesSetting.addEventListener('click', () => {
-            console.log('User clicked Messages button in settings');
-            // Do not close panel
-        });
+        async function loadVouchers() {
+            try {
+                const response = await axios.get(`http://localhost:8000/api/vouchers/${currentUser.email}`);
+                vouchers = response.data.vouchers;
+            } catch (error) {
+                console.error('Error loading vouchers:', error);
+            }
+        }
 
-        logoutSetting.addEventListener('click', () => {
-            console.log('User clicked Logout button in settings');
-            // Do not close panel
-        });
+        function logout() {
+            if (chatWebSocket) {
+                chatWebSocket.close();
+            }
+            sessionStorage.removeItem('user');
+            window.cartManager.clearCart();
+            window.location.href = 'index.html';
+        }
 
-        // Add click handlers for main menu cards
-        profileCard.addEventListener('click', () => {
-            console.log('User clicked Profile button');
-        });
+        // Customer Functions
+        function showMenu() {
+            const modalBody = document.getElementById('modalBody');
+            document.getElementById('modalTitle').textContent = 'Menu';
 
-        membershipCard.addEventListener('click', () => {
-            console.log('User clicked Membership button');
-        });
+            let html = '<div class="product-grid">';
+            products.forEach(product => {
+                html += `
+                    <div class="product-card">
+                        <h4>${product.name}</h4>
+                        <p>${product.description}</p>
+                        <div class="price">$${product.price.toFixed(2)}</div>
+                        <button class="btn btn-primary" onclick="addToCart(${product.id})">
+                            Add to Cart
+                        </button>
+                    </div>
+                `;
+            });
+            html += '</div>';
 
-        messagesCard.addEventListener('click', () => {
-            console.log('User clicked Messages button');
-        });
-		
-		helpCard.addEventListener('click', () => {
-            console.log('User clicked Messages button');
-        });
+            modalBody.innerHTML = html;
+            document.getElementById('modal').classList.add('active');
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            window.cartManager.addItem(product);
+            showNotification(`${product.name} added to cart!`);
+        }
+
+        function showCart() {
+            const cart = window.cartManager.getCart();
+            const modalBody = document.getElementById('modalBody');
+            document.getElementById('modalTitle').textContent = 'Your Cart';
+
+            if (cart.length === 0) {
+                modalBody.innerHTML = '<p>Your cart is empty</p>';
+                document.getElementById('modal').classList.add('active');
+                return;
+            }
+
+            let total = 0;
+            let html = '';
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+
+                html += `
+                    <div class="cart-item">
+                        <div>
+                            <h4>${item.name}</h4>
+                            <p>$${item.price.toFixed(2)} x ${item.quantity} = $${itemTotal.toFixed(2)}</p>
+                        </div>
+                        <div class="cart-actions">
+                            <button onclick="updateCartQuantity(${item.id}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="updateCartQuantity(${item.id}, 1)">+</button>
+                            <button onclick="removeFromCart(${item.id})" style="background: #ff4757;">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            let discount = 0;
+            const selectedVoucher = vouchers.find(v => v.selected && !v.used);
+
+            if (selectedVoucher) {
+                discount = total * (selectedVoucher.discount / 100);
+                html += `
+                    <div class="voucher-item" style="background: #d4edda;">
+                        <div>
+                            <strong>Voucher Applied: ${selectedVoucher.code}</strong>
+                            <p>${selectedVoucher.discount}% discount</p>
+                        </div>
+                        <div>-$${discount.toFixed(2)}</div>
+                    </div>
+                `;
+            }
+
+            const availableVouchers = vouchers.filter(v => !v.used);
+            if (availableVouchers.length > 0) {
+                html += '<h4 style="margin-top: 20px;">Apply Voucher:</h4>';
+                availableVouchers.forEach(v => {
+                    html += `
+                        <div class="voucher-item">
+                            <div>
+                                <div class="voucher-code">${v.code}</div>
+                                <p>${v.discount}% discount</p>
+                            </div>
+                            <input type="checkbox" ${v.selected ? 'checked' : ''}
+                                onchange="toggleVoucher('${v.code}', this.checked)">
+                        </div>
+                    `;
+                });
+            }
+
+            const finalTotal = total - discount;
+
+            html += `
+                <div style="margin-top: 20px; text-align: right;">
+                    <h3>Subtotal: $${total.toFixed(2)}</h3>
+                    ${discount > 0 ? `<h4 style="color: green;">Discount: -$${discount.toFixed(2)}</h4>` : ''}
+                    <h2 style="color: #BD9754;">Total: $${finalTotal.toFixed(2)}</h2>
+                </div>
+
+                <div class="payment-method">
+                    <h3>Payment Method:</h3>
+                    <input type="radio" name="payment" id="cash" value="cash" checked>
+                    <label for="cash" style="display: inline; cursor: pointer;">💵 Cash</label><br>
+                    <input type="radio" name="payment" id="credit" value="credit">
+                    <label for="credit" style="display: inline; cursor: pointer;">💳 Credit Card</label>
+                    
+                    <div id="creditCardForm" class="credit-card-form">
+                        <div class="form-group">
+                            <label>Card Number (Last 6 digits)</label>
+                            <input type="text" id="cardNumber" maxlength="6" pattern="[0-9]{6}" placeholder="123456">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="checkout(${finalTotal})" style="width: 100%; margin-top: 20px;">
+                    Proceed to Payment
+                </button>
+            `;
+
+            modalBody.innerHTML = html;
+            
+            document.getElementById('credit').addEventListener('change', function() {
+                document.getElementById('creditCardForm').classList.toggle('active', this.checked);
+            });
+
+            document.getElementById('modal').classList.add('active');
+        }
+
+        function toggleVoucher(code, checked) {
+            vouchers.forEach(v => v.selected = false);
+            const voucher = vouchers.find(v => v.code === code);
+            if (voucher && checked) {
+                voucher.selected = true;
+            }
+            showCart();
+        }
+
+        function updateCartQuantity(productId, change) {
+            window.cartManager.updateQuantity(productId, change);
+            showCart();
+        }
+
+        function removeFromCart(productId) {
+            window.cartManager.removeItem(productId);
+            showCart();
+        }
+
+        async function checkout(total) {
+            const cart = window.cartManager.getCart();
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+            
+            if (paymentMethod === 'credit') {
+                const cardNumber = document.getElementById('cardNumber').value;
+                if (!cardNumber || cardNumber.length !== 6) {
+                    showNotification('Please enter 6-digit card number');
+                    return;
+                }
+            }
+
+            try {
+                const selectedVoucher = vouchers.find(v => v.selected && !v.used);
+                const voucherCode = selectedVoucher ? selectedVoucher.code : null;
+
+                const response = await axios.post('http://localhost:8000/api/orders', {
+                    user_email: currentUser.email,
+                    items: cart,
+                    total: total,
+                    voucher_code: voucherCode,
+                    payment_method: paymentMethod
+                });
+
+                const pointsEarned = response.data.points_earned;
+                
+                await refreshUserData();
+
+                showNotification(`✅ Payment successful! You earned ${pointsEarned} points. Total: ${currentUser.points}`);
+                
+                // Start countdown notification
+                startOrderCountdown(response.data.order_id);
+
+                window.cartManager.clearCart();
+                await loadVouchers();
+                closeModal();
+
+            } catch (error) {
+                console.error('Checkout error:', error);
+                showNotification('Checkout failed. Please try again.');
+            }
+        }
+
+        function startOrderCountdown(orderId) {
+            let timeLeft = 300; // 5 minutes
+            showNotification(`⏰ Your order #${orderId} will be ready in 5 minutes!`);
+            
+            const countdown = setInterval(() => {
+                timeLeft--;
+                
+                if (timeLeft === 180) {
+                    showNotification(`⏰ Your order will be ready in 3 minutes!`);
+                } else if (timeLeft === 60) {
+                    showNotification(`⏰ Your order will be ready in 1 minute!`);
+                } else if (timeLeft === 0) {
+                    showNotification(`✅ Your order #${orderId} is ready for pickup!`);
+                    clearInterval(countdown);
+                }
+            }, 1000);
+        }
+
+        async function showMembership() {
+            await refreshUserData();
+            
+            const modalBody = document.getElementById('modalBody');
+            document.getElementById('modalTitle').textContent = 'Membership Points';
+
+            const points = currentUser.points || 0;
+            const nextReward = Math.ceil(points / 100) * 100;
+            const progress = (points % 100);
+
+            let html = `
+                <div style="text-align: center; padding: 20px;">
+                    <h2 style="color: #BD9754;">${points} Points</h2>
+                    <p>Next reward at ${nextReward} points</p>
+                    <div style="width: 100%; height: 20px; background: #e0e0e0; border-radius: 10px; margin: 20px 0;">
+                        <div style="width: ${progress}%; height: 100%; background: #BD9754; border-radius: 10px;"></div>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="showRedeemVoucher()">
+                        Redeem Points for Voucher
+                    </button>
+
+                    <h4 style="margin-top: 30px;">Your Vouchers</h4>
+                    ${vouchers.length === 0 ? '<p>No vouchers yet</p>' : ''}
+                    ${vouchers.map(v => `
+                        <div class="voucher-item">
+                            <div>
+                                <div class="voucher-code">${v.code}</div>
+                                <p>${v.discount}% off</p>
+                            </div>
+                            <span style="color: ${v.used ? 'red' : 'green'};">
+                                ${v.used ? 'Used' : 'Available'}
+                            </span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            modalBody.innerHTML = html;
+            document.getElementById('modal').classList.add('active');
+        }
+
+        function showRedeemVoucher() {
+            const modalBody = document.getElementById('modalBody');
+            document.getElementById('modalTitle').textContent = 'Redeem Voucher';
+
+            const points = currentUser.points || 0;
+
+            let html = `
+                <p>Current Points: <strong>${points}</strong></p>
+                <div style="margin-top: 20px;">
+                    <div class="voucher-item">
+                        <div>
+                            <div class="voucher-code">SAVE5</div>
+                            <p>5% discount - Costs 100 points</p>
+                        </div>
+                        <button class="btn btn-primary" ${points < 100 ? 'disabled' : ''}
+                            onclick="redeemVoucher(100, 'SAVE5', 5)">
+                            Redeem
+                        </button>
+                    </div>
+
+                    <div class="voucher-item">
+                        <div>
+                            <div class="voucher-code">SAVE10</div>
+                            <p>10% discount - Costs 200 points</p>
+                        </div>
+                        <button class="btn btn-primary" ${points < 200 ? 'disabled' : ''}
+                            onclick="redeemVoucher(200, 'SAVE10', 10)">
+                            Redeem
+                        </button>
+                    </div>
+
+                    <div class="voucher-item">
+                        <div>
+                            <div class="voucher-code">SAVE15</div>
+                            <p>15% discount - Costs 350 points</p>
+                        </div>
+                        <button class="btn btn-primary" ${points < 350 ? 'disabled' : ''}
+                            onclick="redeemVoucher(350, 'SAVE15', 15)">
+                            Redeem
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            modalBody.innerHTML = html;
+        }
+
+        async function redeemVoucher(cost, code, discount) {
+            if (currentUser.points < cost) {
+                showNotification('Not enough points!');
+                return;
+            }
+
+            try {
+                await axios.post('http://localhost:8000/api/vouchers/redeem', {
+                    user_email: currentUser.email,
+                    points_cost: cost,
+                    voucher_code: code,
+                    discount: discount
+                });
+
+                await refreshUserData();
+                showNotification(`🎉 Voucher ${code} redeemed! You have ${currentUser.points} points left.`);
+                await loadVouchers();
+                showMembership();
+
+            } catch (error) {
+                console.error('Redeem error:', error);
+                showNotification('Failed to redeem voucher');
+            }
+        }
+
+        function showProfile() {
+            const modalBody = document.getElementById('modalBody');
+            document.getElementById('modalTitle').textContent = 'My Profile';
+
+            let html = `
+                <div class="form-group">
+                    <label>Display Name</label>
+                    <input type="text" id="profileName" value="${currentUser.name}">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" value="${currentUser.email}" disabled>
+                </div>
+                <div class="form-group">
+                    <label>New Password (leave blank to keep current)</label>
+                    <input type="password" id="profilePassword">
+                </div>
+                <button class="btn btn-primary" onclick="updateProfile()">Update Profile</button>
+            `;
+
+            modalBody.innerHTML = html;
+            document.getElementById('modal').classList.add('active');
+        }
+
+        async function updateProfile() {
+            const name = document.getElementById('profileName').value;
+            const password = document.getElementById('profilePassword').value;
+
+            try {
+                await axios.put('http://localhost:8000/api/user/update', {
+                    email: currentUser.email,
+                    name: name,
+                    password: password || null
+                });
+
+                await refreshUserData();
+                showNotification('Profile updated successfully!');
+                closeModal();
+
+            } catch (error) {
+                showNotification('Failed to update profile');
+            }
+        }
+
+        function showPreorder() {
+            const modalBody = document.getElementById('modalBody');
+            document.getElementById('modalTitle').textContent = 'Pre-order';
+
+            let html = `
+                <div class="form-group">
+                    <label>Select Item</label>
+                    <select id="preorderItem">
+                        ${products.map(p => `<option value="${p.id}">${p.name} - $${p.price.toFixed(2)}</option>`).join('')}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="number" id="preorderQuantity" value="1" min="1">
+                </div>
+                <div class="form-group">
+                    <label>Pickup Time</label>
+                    <input type="time" id="preorderTime">
+                </div>
+                <div class="form-group">
+                    <label>Special Instructions</label>
+                    <textarea id="preorderNotes" rows="3"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="submitPreorder()">Place Pre-order</button>
+            `;
+
+            modalBody.innerHTML = html;
+            document.getElementById('modal').classList.add('active');
+        }
+
+        async function submitPreorder() {
+            const productId = document.getElementById('preorderItem').value;
+            const quantity = document.getElementById('preorderQuantity').value;
+            const pickupTime = document.getElementById('preorderTime').value;
+            const notes = document.getElementById('preorderNotes').value;
+
+            if (!pickupTime) {
+                showNotification('Please select a pickup time');
+                return;
+            }
+
+            try {
+                await axios.post('http://localhost:8000/api/preorders', {
+                    user_email: currentUser.email,
+                    product_id: parseInt(productId),
+                    quantity: parseInt(quantity),
+                    pickup_time: pickupTime,
+                    notes: notes
+                });
+
+                showNotification('Pre-order placed successfully!');
+                closeModal();
+            } catch (error) {
+                showNotification('Failed to place pre-order');
+            }
+        }
+
+        // Employee Functions
+        async function showManageProducts() {
+            await loadProducts();
+            
+            const modalBody = document.getElementById('modalBody');
+            document.getElementById('modalTitle').textContent = 'Manage Products';
+
+            let html = `
+                <h3>Add New Product</h3>
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" id="productName">
+                </div>
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="number" id="productPrice" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <input type="text" id="productDesc">
+                </div>
+                <button class="btn btn-primary" onclick="addProduct()">Add Product</button>
+
+                <h3 style="margin-top: 30px;">Current Products</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${products.map(p => `
+                            <tr>
+                                <td>${p.name}</td>
+                                <td>$${p.price.toFixed(2)}</td>
+                                <td>
+                                    <button class="btn btn-primary" style="padding: 5px 10px;" 
+                                        onclick="editProduct(${p.id}, '${p.name}', ${p.price}, '${p.description}')">Edit</button>
+                                    <button class="btn btn-primary" style="padding: 5px 10px; background: #ff4757;"
+                                        onclick="deleteProduct(${p.id})">Delete</button>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+
+            modalBody.innerHTML = html;
+            document.getElementById('modal').classList.add('active');
+        }
+
+        async function addProduct() {
+            const name = document.getElementById('productName').value;
+            const price = parseFloat(document.getElementById('productPrice').value);
+            const description = document.getElementById('productDesc').value;
+
+            if (!name || !price) {
+                showNotification('Please fill all fields');
+                return;
+            }
+
+            try {
+                await axios.post('http://localhost:8000/api/products', {
+                    name, price, description
+                });
+
+                showNotification('Product added successfully!');
+                await loadProducts();
+                showManageProducts();
+
+            } catch (error) {
+                showNotification('Failed to add product');
+            }
+        }
+
+        function editProduct(id, name, price, description) {
+            const newName = prompt('Product Name:', name) || name;
+            const newPrice = parseFloat(prompt('Price:', price)) || price;
+            const newDesc = prompt('Description:', description) || description;
+
+            axios.put(`http://localhost:8000/api/products/${id}`, {
+                name: newName,
+                price: newPrice,
+                description: newDesc
+            }).then(() => {
+                showNotification('Product updated!');
+                loadProducts();
+                showManageProducts();
+            }).catch(() => {
+                showNotification('Failed to update product');
+            });
+        }
+
+        async function deleteProduct(id) {
+            if (!confirm('Delete this product?')) return;
+
+            try {
+                await axios.delete(`http://localhost:8000/api/products/${id}`);
+                showNotification('Product deleted');
+                await loadProducts();
+                showManageProducts();
+
+            } catch (error) {
+                showNotification('Failed to delete product');
+            }
+        }
+
+        async function showWaitList() {
+            const modalBody = document.getElementById('modalBody');
+            document.getElementById('modalTitle').textContent = 'Wait List Queue';
+
+            try {
+                const response = await axios.get('http://localhost:8000/api/waitlist');
+                const waitlist = response.data.waitlist;
+
+                let html = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order #</th>
+                                <th>Customer</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${waitlist.length === 0 ? '<tr><td colspan="5">No orders in queue</td></tr>' : ''}
+                            ${waitlist.map(order => `
+                                <tr>
+                                    <td>#${order.id}</td>
+                                    <td>${order.name}</td>
+                                    <td>$${order.total.toFixed(2)}</td>
+                                    <td><span style="color: ${order.status === 'ready' ? 'green' : 'orange'};">${order.status}</span></td>
+                                    <td>
+                                        ${order.status === 'pending' ? 
+                                            `<button class="btn btn-primary" style="padding: 5px 10px;" onclick="updateOrderStatus(${order.id}, 'preparing')">Start</button>` :
+                                            order.status === 'preparing' ?
+                                            `<button class="btn btn-primary" style="padding: 5px 10px;" onclick="updateOrderStatus(${order.id}, 'ready')">Ready</button>` :
+                                            `<button class="btn btn-primary" style="padding: 5px 10px;" onclick="updateOrderStatus(${order.id}, 'completed')">Complete</button>`
+                                        }
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
+
+                modalBody.innerHTML = html;
+            } catch (error) {
+                modalBody.innerHTML = '<p>Failed to load wait list</p>';
+            }
+
+            document.getElementById('modal').classList.add('active');
+        }
+
+        async function updateOrderStatus(orderId, status) {
+            try {
+                await axios.put(`http://localhost:8000/api/waitlist/${orderId}`, {
+                    order_id: orderId,
+                    status: status
+                });
+
+                showNotification(`Order #${orderId} status updated to ${status}`);
+                showWaitList();
+
+            } catch (error) {
+                showNotification('Failed to update order status');
+            }
+        }
+
+        async function showPreorders() {
+            const modalBody = document.getElementById('modalBody');
+            document.getElementById('modalTitle').textContent = 'Pre-orders';
+
+            try {
+                const response = await axios.get('http://localhost:8000/api/preorders');
+                const preorders = response.data.preorders;
+
+                let html = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Customer</th>
+                                <th>Order</th>
+                                <th>Notes</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${preorders.length === 0 ? '<tr><td colspan="5">No pre-orders</td></tr>' : ''}
+                            ${preorders.map(p => `
+                                <tr>
+                                    <td>${p.pickup_time}</td>
+                                    <td>${p.name}</td>
+                                    <td>${p.quantity}x ${p.product}</td>
+                                    <td>${p.notes || '-'}</td>
+                                    <td>
+                                        ${p.status === 'pending' ?
+                                            `<button class="btn btn-primary" style="padding: 5px 10px;" onclick="confirmPreorder(${p.id})">Confirm</button>
+                                            <button class="btn btn-secondary" style="padding: 5px 10px;" onclick="printBill(${p.id})">Print</button>` :
+                                            '<span style="color: green;">Confirmed</span>'
+                                        }
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
+
+                modalBody.innerHTML = html;
+            } catch (error) {
+                modalBody.innerHTML = '<p>Failed to load pre-orders</p>';
+            }
+
+            document.getElementById('modal').classList.add('active');
+        }
+
+        async function confirmPreorder(id) {
+            try {
+                await axios.put(`http://localhost:8000/api/preorders/${id}/confirm`);
+                showNotification('Pre-order confirmed!');
+                showPreorders();
+            } catch (error) {
+                showNotification('Failed to confirm pre-order');
+            }
+        }
+
+        function printBill(orderId) {
+            const printWindow = window.open('', '', 'height=600,width=400');
+            printWindow.document.write('<html><head><title>Bill #' + orderId + '</title>');
+            printWindow.document.write('</head><body>');
+            printWindow.document.write('<h1>Coffee Shop Receipt</h1>');
+            printWindow.document.write('<p>Order #' + orderId + '</p>');
+            printWindow.document.write('<p>Date: ' + new Date().toLocaleString() + '</p>');
+            printWindow.document.write('<hr>');
+            printWindow.document.write('<p>Thank you for your order!</p>');
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        }
+
+        function showCustomerPoints() {
+            const modalBody = document.getElementById('modalBody');
+            document.getElementById('modalTitle').textContent = 'Customer Points Lookup';
+
+            let html = `
+                <div class="form-group">
+                    <label>Customer Email</label>
+                    <input type="email" id="customerEmail">
+                </div>
+                <button class="btn btn-primary" onclick="lookupPoints()">Lookup Points</button>
+                <div id="pointsResult" style="margin-top: 20px;"></div>
+            `;
+
+            modalBody.innerHTML = html;
+            document.getElementById('modal').classList.add('active');
+        }
+
+        async function lookupPoints() {
+            const email = document.getElementById('customerEmail').value;
+            try {
+                const response = await axios.get(`http://localhost:8000/api/user/${email}`);
+                document.getElementById('pointsResult').innerHTML = `
+                    <h3>${response.data.name}</h3>
+                    <p style="font-size: 24px; color: #BD9754;">Points: ${response.data.points}</p>
+                `;
+            } catch (error) {
+                document.getElementById('pointsResult').innerHTML = '<p style="color: red;">Customer not found</p>';
+            }
+        }
+
+        // Manager Functions
+        function showInventory() {
+            const modalBody = document.getElementById('modalBody');
+            document.getElementById('modalTitle').textContent = 'Inventory Management';
+
+            let html = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Stock</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${products.map(p => `
+                            <tr>
+                                <td>${p.name}</td>
+                                <td>${Math.floor(Math.random() * 200) + 50}</td>
+                                <td><span style="color: green;">In Stock</span></td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+
+            modalBody.innerHTML = html;
+            document.getElementById('modal').classList.add('active');
+        }
+
+        async function showSalesReport() {
+            const modalBody = document.getElementById('modalBody');
+            document.getElementById('modalTitle').textContent = 'Daily Sales';
+
+            try {
+                const response = await axios.get('http://localhost:8000/api/sales/daily');
+                
+                let html = `
+                    <div style="padding: 20px; text-align: center;">
+                        <h2>Today's Sales</h2>
+                        <h1 style="color: #BD9754; font-size: 48px;">$${response.data.daily_sales.toFixed(2)}</h1>
+                        <p>${new Date().toLocaleDateString()}</p>
+                    </div>
+                `;
+
+                modalBody.innerHTML = html;
+            } catch (error) {
+                modalBody.innerHTML = '<p>Failed to load sales data</p>';
+            }
+
+            document.getElementById('modal').classList.add('active');
+        }
+
+        async function showRevenueReport() {
+            const modalBody = document.getElementById('modalBody');
+            document.getElementById('modalTitle').textContent = 'Revenue Report';
+
+            try {
+                const [daily, monthly, yearly] = await Promise.all([
+                    axios.get('http://localhost:8000/api/sales/daily'),
+                    axios.get('http://localhost:8000/api/sales/monthly'),
+                    axios.get('http://localhost:8000/api/sales/yearly')
+                ]);
+
+                let html = `
+                    <div style="padding: 20px;">
+                        <h3>Daily Revenue: <span style="color: #BD9754;">$${daily.data.daily_sales.toFixed(2)}</span></h3>
+                        <h3>Monthly Revenue: <span style="color: #BD9754;">$${monthly.data.monthly_sales.toFixed(2)}</span></h3>
+                        <h3>Yearly Revenue: <span style="color: #BD9754;">$${yearly.data.yearly_sales.toFixed(2)}</span></h3>
+                    </div>
+                `;
+
+                modalBody.innerHTML = html;
+
+            } catch (error) {
+                modalBody.innerHTML = '<p>Failed to load revenue data</p>';
+            }
+
+            document.getElementById('modal').classList.add('active');
+        }
+
+        async function showBestSelling() {
+            const modalBody = document.getElementById('modalBody');
+            document.getElementById('modalTitle').textContent = 'Best Selling Items';
+
+            try {
+                const response = await axios.get('http://localhost:8000/api/sales/bestselling');
+                const items = response.data.best_selling;
+
+                let html = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Item</th>
+                                <th>Units Sold</th>
+                                <th>Revenue</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${items.length === 0 ? '<tr><td colspan="4">No sales data available</td></tr>' : ''}
+                            ${items.map((item, index) => `
+                                <tr>
+                                    <td>${index + 1}</td>
+                                    <td>${item.name}</td>
+                                    <td>${item.units_sold}</td>
+                                    <td>$${item.revenue.toFixed(2)}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
+
+                modalBody.innerHTML = html;
+            } catch (error) {
+                modalBody.innerHTML = '<p>Failed to load best selling items</p>';
+            }
+
+            document.getElementById('modal').classList.add('active');
+        }
+
+        // Chat Function (All Roles) - Real-time WebSocket
+        function showChat() {
+            const modalBody = document.getElementById('modalBody');
+            document.getElementById('modalTitle').textContent = 'Chat';
+
+            let html = `
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message received">
+                            <div class="sender">System</div>
+                            <div>Welcome to the chat! Messages are sent in real-time.</div>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="chatInput" placeholder="Type a message..."
+                            onkeypress="if(event.key==='Enter') sendChatMessage()">
+                        <button class="btn btn-primary" onclick="sendChatMessage()">Send</button>
+                    </div>
+                </div>
+            `;
+
+            modalBody.innerHTML = html;
+            document.getElementById('modal').classList.add('active');
+
+            // Initialize WebSocket
+            if (!chatWebSocket || chatWebSocket.readyState === WebSocket.CLOSED) {
+                initializeChatWebSocket();
+            }
+        }
+
+        function initializeChatWebSocket() {
+            try {
+                chatWebSocket = new WebSocket(`ws://localhost:8000/ws/chat/${currentUser.email}`);
+                
+                chatWebSocket.onopen = function() {
+                    console.log('✅ Chat connected');
+                };
+                
+                chatWebSocket.onmessage = function(event) {
+                    const data = JSON.parse(event.data);
+                    const chatMessages = document.getElementById('chatMessages');
+                    
+                    if (chatMessages) {
+                        const messageDiv = document.createElement('div');
+                        messageDiv.className = data.sender === currentUser.name ? 'message sent' : 'message received';
+                        messageDiv.innerHTML = `
+                            <div class="sender">${data.sender} (${data.role})</div>
+                            <div>${data.message}</div>
+                        `;
+                        chatMessages.appendChild(messageDiv);
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }
+                };
+                
+                chatWebSocket.onerror = function(error) {
+                    console.error('WebSocket error:', error);
+                };
+                
+                chatWebSocket.onclose = function() {
+                    console.log('Chat disconnected');
+                };
+            } catch (error) {
+                console.error('Failed to initialize WebSocket:', error);
+            }
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+
+            if (message && chatWebSocket && chatWebSocket.readyState === WebSocket.OPEN) {
+                const chatData = {
+                    sender: currentUser.name,
+                    message: message,
+                    role: currentUser.role
+                };
+                
+                chatWebSocket.send(JSON.stringify(chatData));
+                input.value = '';
+            } else if (!chatWebSocket || chatWebSocket.readyState !== WebSocket.OPEN) {
+                showNotification('Chat not connected. Please refresh the page.');
+            }
+        }
+
+        // Utility Functions
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            document.getElementById('notificationText').textContent = message;
+            notification.classList.add('show');
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
     </script>
 </body>
 </html>
-
