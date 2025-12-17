@@ -73,11 +73,23 @@ Here the server will run backend at port 8000
 
 
 ## Home 
-<img width="1916" height="872" alt="image" src="https://github.com/user-attachments/assets/90707c24-a545-4315-89b5-bd7faaea470a" />
+<img width="1914" height="909" alt="image" src="https://github.com/user-attachments/assets/0df54820-d98e-435a-9a64-1a67e20d0b53" />
 
-## Personal Information User Session Preview 
 
-<img width="1911" height="912" alt="image" src="https://github.com/user-attachments/assets/5eb6e264-a8ff-4eaa-91a1-3ff011dae0c4" />
+## User Account  
+<img width="1917" height="907" alt="image" src="https://github.com/user-attachments/assets/fdb5d1be-24ef-4ebd-ae4f-22e0dfd54152" />
+
+## Voucher Redeem
+<img width="1121" height="521" alt="image" src="https://github.com/user-attachments/assets/71831d2c-ebc8-403a-b497-c4737b5b5d2a" />
+
+## Preorder 
+<img width="1149" height="725" alt="image" src="https://github.com/user-attachments/assets/5014cb20-8145-4263-80eb-6742e545faac" />
+
+## Update Personal 
+<img width="1129" height="534" alt="image" src="https://github.com/user-attachments/assets/a6248d1a-78f6-4309-ab86-1316f8528d6e" />
+
+## Real time chat with employee and Manager 
+<img width="1110" height="621" alt="image" src="https://github.com/user-attachments/assets/30343650-f08c-4478-a567-cbed6ca32cbe" />
 
 TODO:
 Member miss role base access
