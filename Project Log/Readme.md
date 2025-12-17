@@ -150,19 +150,77 @@ Automatic order countdown with notifications (Admin + User Interface)
 **Goal:** 100% test case coverage
 
 ## Bugs
-INFO:     127.0.0.1:56829 - "GET /api/products HTTP/1.1" 200 OK
-INFO:     127.0.0.1:56829 - "GET /api/vouchers/customer2%40gmail.com HTTP/1.1" 200 OK
-INFO:     127.0.0.1:53873 - "WebSocket /ws/chat/customer2%40gmail.com" [accepted]
-2025-12-16 23:53:58,259 - main - INFO - User customer2@gmail.com connected to chat
-INFO:     connection open
-INFO:     127.0.0.1:58909 - "GET /api/user/customer2%40gmail.com HTTP/1.1" 200 OK
-INFO:     127.0.0.1:62311 - "GET /api/user/customer2%40gmail.com HTTP/1.1" 200 OK
-2025-12-17 00:03:29,485 - main - INFO - User customer2@gmail.com disconnected from chat
-INFO:     connection closed
-INFO:     127.0.0.1:52668 - "GET /api/user/customer2%40gmail.com HTTP/1.1" 200 OK
-2025-12-17 00:03:29,840 - main - ERROR - Error fetching products: cannot access local variable 'products' where it is not associated with a value
-INFO:     127.0.0.1:52668 - "GET /api/products HTTP/1.1" 200 OK
-INFO:     127.0.0.1:52668 - "GET /api/vouchers/customer2%40gmail.com HTTP/1.1" 200 OK
- main - ERROR - Error fetching products: cannot access local variable 'products' where it is not associated with a value
+API Requests
+
+### Products
+- `GET /api/products` → **200 OK**
+  - Client: `127.0.0.1:56829`
+- `GET /api/products` → **200 OK**
+  - Client: `127.0.0.1:52668`
+    **Error Logged**: `cannot access local variable 'products' where it is not associated with a value`
+
+### Vouchers
+- `GET /api/vouchers/customer2@gmail.com` → **200 OK**
+  - Client: `127.0.0.1:56829`
+- `GET /api/vouchers/customer2@gmail.com` → **200 OK**
+  - Client: `127.0.0.1:52668`
+
+### User Data
+- `GET /api/user/customer2@gmail.com` → **200 OK**
+  - Client: `127.0.0.1:58909`
+- `GET /api/user/customer2@gmail.com` → **200 OK**
+  - Client: `127.0.0.1:62311`
+- `GET /api/user/customer2@gmail.com` → **200 OK**
+  - Client: `127.0.0.1:52668`
+
+---
+
+## 💬 WebSocket Chat Activity
+
+### Connection
+- **Accepted**
+  - Endpoint: `/ws/chat/customer2@gmail.com`
+  - Client: `127.0.0.1:53873`
+  - Timestamp: `2025-12-16 23:53:58`
+- Status: `connection open`
+- Log: `User customer2@gmail.com connected to chat`
+
+### Disconnection
+- Timestamp: `2025-12-17 00:03:29`
+- Log: `User customer2@gmail.com disconnected from chat`
+- Status: `connection closed`
+
+---
+
+## Errors
+
+### Product Fetching Error
+- **Timestamp**: `2025-12-17 00:03:29`
+- **Source**: `main`
+- **Level**: `ERROR`
+- **Message**:
+Error fetching products: cannot access local variable 'products' where it is not associated with a value
+
+
+- **Repeated Error Logged**
+
+---
+
+## Real time log
+
+| Time (UTC)              | Event |
+|-------------------------|-------|
+| 2025-12-16 23:53:58     | WebSocket chat connected |
+| 2025-12-17 00:03:29     | Chat disconnected |
+| 2025-12-17 00:03:29     | Product fetching error occurred |
+
+---
+
+## Notes
+- All API endpoints returned **200 OK**, but img product fetching from db sending errors.
+- Product errors suggest a **local variable scope issue**.
+- WebSocket lifecycle work normally and reliable.
+
+---
  
 <img width="550" height="350" alt="image" src="https://github.com/user-attachments/assets/b4189468-8d2e-492f-8468-3e59848dd559" />
