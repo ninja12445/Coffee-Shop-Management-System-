@@ -13,17 +13,17 @@ Bckend use fastAPI + uvicorn + MariaDb (have documentation links to their docs i
 9. Pay by cash
 
 ## New Accomplishments
-| Feature           | Working? |               Description                     |
+| Feature           | Does it support? |                    Status                     |
 | ----------------- | -------- | --------------------------------------------- |
-| *Real-time chat   | ⚠️        |    web socket, user can send msg           |
-| Countdown         |           | Live timer setup from backend                 |
-| Notifications     | ✅        | Send alert + confirmation & status update     |
-| Membership points | ✅        | Points add / exchange / use on order          |
-| Payments          | ✅        | Simulated card + cash code                    |
-| Preordering       | ✅        | Date picker + order scheduling                |
-| Self-service      |            | Selects  items without employee               |
-| Waitlist          |            | Queue and ticket calling number               |
-| QR Scan           |            | QR payment processing                         |
+| *Real-time chat   | ✅        |    web socket but incomeplete                 |
+| Login / register  | ✅        |                    working                    |
+| Add to Cart       | ❌        |  missing on home.html, work in user           |
+| Membership points | ✅        |                   working                     |
+| Vouchers         | ✅         |                   working                     |
+| Preordering       | ✅        |                   working                     |
+| Self-service      |   ❌       |                                              |
+| Waitlist          |   ✅       |                  working                     |
+| QR Scan           |   ❌       |                                              |
 
 ---
 * reason why real time chat not working stable is bc the message sent but have no receiver(s).
