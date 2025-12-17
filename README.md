@@ -94,8 +94,7 @@ Here the server will run backend at port 8000
 <img width="1110" height="621" alt="image" src="https://github.com/user-attachments/assets/30343650-f08c-4478-a567-cbed6ca32cbe" />
 
 TODO:
-Member miss role base access
-Home needs to add a logo and redesign the nav bar icon and upgrades the search can find exact products
+Has role based access 
 
 
 
