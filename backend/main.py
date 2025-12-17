@@ -242,34 +242,31 @@ async def get_products():
     try:
         conn = get_db_connection()
         cur = conn.cursor()
-        
+
         cur.execute("SELECT id, name, price, description, image FROM products")
 
-        products.append({
-            "id": row[0],
-            "name": row[1],
-            "price": float(row[2]),
-            "description": row[3] or "",
-            "image": row[4]
-        })
-        
+        products = []  # ✅ initialize
+
+        for row in cur:  # ✅ loop
+            products.append({
+                "id": row[0],
+                "name": row[1],
+                "price": float(row[2]),
+                "description": row[3] or "",
+                "image": row[4]
+            })
+
         cur.close()
         conn.close()
-        
-        if not products:
-            products = [
-                {"id": 1, "name": "Espresso", "price": 3.25, "description": "Rich and bold"},
-                {"id": 2, "name": "Cappuccino", "price": 2.80, "description": "Creamy foam"},
-                {"id": 3, "name": "Latte", "price": 4.50, "description": "Smooth and milky"},
-                {"id": 4, "name": "Americano", "price": 3.00, "description": "Classic coffee"}
-            ]
-        
+
         return {"products": products}
+
     except Exception as e:
         if conn:
             conn.close()
         logger.error(f"Error fetching products: {str(e)}")
         return {"products": []}
+
 
 @app.post("/api/products")
 async def add_product(product: ProductData):
