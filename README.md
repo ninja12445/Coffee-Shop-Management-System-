@@ -45,8 +45,8 @@ Here the server will run backend at port 8000
 
 ## 2. Payment & Transactions
 - [ ] Payment options:  
-  - Pay by cash  
-  - Pay by credit card  
+  - Pay by cash  ✅ 
+  - Pay by credit card  ✅ 
 - [ ] Bank account transaction simulation  
 
 ## 3. User & Membership
