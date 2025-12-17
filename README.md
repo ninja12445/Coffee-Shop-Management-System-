@@ -65,9 +65,6 @@ Here the server will run backend at port 8000
 - [PASS] Handle up to 30 user requests simultaneously  ✅
   
 ## Member Registration Screen 
-## Before 
-<img width="1917" height="907" alt="image" src="https://github.com/user-attachments/assets/5d68a72f-85c5-4aa0-86ad-cc14b1b894d7" />
-
 ## After 
 <img width="1917" height="872" alt="LoginScreenUI" src="https://github.com/user-attachments/assets/ba70255c-44f7-416d-b255-63f96a7093c7" />
 
