@@ -34,7 +34,7 @@ Here the server will run backend at port 8000
 # Main Features
 
 ## 1. Ordering Features
-- [ ] Pre-ordering  
+- [ ] Pre-ordering  ✅
 - [ ] Self-service ordering  
 - [ ] Wait 2 Call Update  
   - **Before:** Customer had to wait manually  
@@ -49,21 +49,20 @@ Here the server will run backend at port 8000
 
 ## 3. User & Membership
  [PASS] Create Account, Login / Logout ✅ 
-- [ ] Membership points system  
+- [ ] Membership points system  ✅
 - [ ] Scan bar code  
 
 ## 4. Manager Controls
-- [ ] Adjust sales records  
+- [ ] Adjust sales records  ✅
 - [ ] View activities  
 - [ ] Track ingredients
 - [PASS] Manage user information ✅ 
-- [ ] Check voucher usage  
+- Check voucher usage ✅
 
 ## 5. System Capabilities
 - [PASS] Create Account, Login / Logout ✅ 
 - [PASS] Manage user information ✅ 
 - [PASS] Handle up to 30 user requests simultaneously  ✅
-- [PARTIAL] Clean UI-UX design
   
 ## Member Registration Screen 
 ## Before 
