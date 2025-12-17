@@ -21,7 +21,7 @@ Bckend use fastAPI + uvicorn + MariaDb (have documentation links to their docs i
 | Membership points | ✅        |                   working                     |
 | Vouchers         | ✅         |                   working                     |
 | Preordering       | ✅        |                   working                     |
-| Self-service      |   ❌       |                                              |
+| Self-service      |   ⚠️       |                                              |
 | Waitlist          |   ✅       |                  working                     |
 | QR Scan           |   ❌       |                                              |
 
