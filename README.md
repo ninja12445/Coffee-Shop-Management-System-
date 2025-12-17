@@ -6,10 +6,12 @@ User friendly, efficient and extremely easy to use.
 
 requirements.txt
 ```
-Python 3.12.9        | python            --version 
-Mariadb              | pip show mariadb  --version
-fastapi 0.120.0      | pip show fastapi  --version
-pydantic 2.12.3      | pip show pydantic --version
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+mariadb==1.1.8
+pydantic==2.5.0
+python-multipart==0.0.6
+websockets==12.0
 ```
 pydantic library 
 
