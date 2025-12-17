@@ -175,7 +175,7 @@ API Requests
 
 ---
 
-## 💬 WebSocket Chat Activity
+## WebSocket Chat Activity
 
 ### Connection
 - **Accepted**
