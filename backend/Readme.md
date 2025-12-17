@@ -65,6 +65,16 @@ TCP 3 - Way Handshake
 + Role Base Access Control
 + User Session with permissions (what each user can do and cannot do)
 
+## Confirmation:
++ Real time chat does not create a chat room between two users, but user can send their message
++ That means user can successfully chat but not send to many users or different user.
+  
+## Acknowledgement:
++ Due to limited time the program achieves 85% robustness and employee can add item / delete item and directly store in database
++ Must download HeidiSQL, and Create SQL Table for it to work
++ Total bugs detected: 80+, mostly annoying bugs come from the backend (and api end points, most mechanism works) and CORS (connect endpoint and sending real time message) 
++ Average bug length: 50 lines 
+
 
 
 
