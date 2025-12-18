@@ -222,6 +222,15 @@ Error fetching products: cannot access local variable 'products' where it is not
 - WebSocket lifecycle work normally and reliable.
 
 ---
+<img width="709" height="228" alt="image" src="https://github.com/user-attachments/assets/3088b169-044a-4752-a688-ac323668c480" />
+
+<img width="975" height="104" alt="image" src="https://github.com/user-attachments/assets/18932aab-4b3c-4b1d-a790-138d209cc697" />
+
+<img width="975" height="112" alt="image" src="https://github.com/user-attachments/assets/138de56b-5518-47a0-a773-a1308139bc23" />
+
+<img width="699" height="546" alt="image" src="https://github.com/user-attachments/assets/d0d96bdf-49ad-434c-9ab1-475b32235d88" />
+
+
  
 <img width="550" height="350" alt="image" src="https://github.com/user-attachments/assets/b4189468-8d2e-492f-8468-3e59848dd559" />
 Final Database 
